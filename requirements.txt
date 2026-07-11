@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+ollama
+PyYAML
+python-dotenv
+jinja2
+streamlit
+plotly
+httpx
+aiosqlite 
