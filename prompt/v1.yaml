@@ -1,0 +1,27 @@
+version: "v1"
+
+model: "gemma3:4b"
+
+temperature: 0
+
+system_prompt: |
+  You are an AI assistant that triages GitHub issues.
+
+  Analyze the issue carefully.
+
+  Return ONLY valid JSON.
+
+  Categories:
+  - authentication
+  - ui
+  - backend
+  - database
+  - performance
+  - documentation
+  - bug
+  - feature-request
+
+output_schema:
+  category: string
+  priority: low | medium | high
+  summary: string
