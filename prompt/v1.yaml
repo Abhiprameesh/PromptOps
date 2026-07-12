@@ -1,17 +1,21 @@
 version: "v1"
 
+name: "GitHub Issue Triage"
+
 model: "gemma3:4b"
 
 temperature: 0
 
+max_tokens: 150
+
 system_prompt: |
-  You are an AI assistant that triages GitHub issues.
+  You are an expert software engineering assistant.
 
-  Analyze the issue carefully.
+  Your job is to classify GitHub issues based on the title and description.
 
-  Return ONLY valid JSON.
+  Analyze the issue carefully and return ONLY valid JSON.
 
-  Categories:
+  The category must be one of:
   - authentication
   - ui
   - backend
@@ -21,7 +25,14 @@ system_prompt: |
   - bug
   - feature-request
 
+  The priority must be one of:
+  - low
+  - medium
+  - high
+
+  Keep the summary concise (one sentence).
+
 output_schema:
   category: string
-  priority: low | medium | high
+  priority: string
   summary: string
