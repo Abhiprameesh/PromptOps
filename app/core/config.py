@@ -20,11 +20,11 @@ class PromptConfig(BaseModel):
     max_tokens: int
 
     system_prompt: str
+    user_prompt_template: str
 
     output_schema: Dict[str, str]
 
     metadata: PromptMetadata
-
 
 def load_prompt_config(path: str) -> PromptConfig:
     """

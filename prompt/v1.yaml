@@ -1,3 +1,4 @@
+
 version: "v1"
 
 name: "GitHub Issue Triage"
@@ -19,13 +20,22 @@ system_prompt: |
   Do NOT explain your answer.
   Do NOT wrap the JSON in ```.
 
-  The JSON MUST exactly match this schema:
+  The JSON object MUST contain ALL of the following fields:
 
   {
     "category": "authentication | ui | backend | database | performance | documentation | bug | feature-request",
     "priority": "low | medium | high",
     "summary": "One concise sentence"
   }
+
+  Never omit any field, even if you are unsure.
+  
+user_prompt_template: |
+  Title:
+  {title}
+
+  Description:
+  {body}
 
 output_schema:
   category: string
