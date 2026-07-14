@@ -13,17 +13,19 @@ system_prompt: |
 
   Your task is to classify GitHub issues.
 
-  Return ONLY valid JSON.
+  You MUST return ONLY a valid JSON object.
 
-  Categories:
-    authentication
-    ui
-    backend
-    database
-    performance
-    documentation
-    bug
-    feature-request
+  Do NOT include markdown.
+  Do NOT explain your answer.
+  Do NOT wrap the JSON in ```.
+
+  The JSON MUST exactly match this schema:
+
+  {
+    "category": "authentication | ui | backend | database | performance | documentation | bug | feature-request",
+    "priority": "low | medium | high",
+    "summary": "One concise sentence"
+  }
 
 output_schema:
   category: string
