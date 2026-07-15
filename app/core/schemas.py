@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import BaseModel
 
 
@@ -7,6 +9,21 @@ class GitHubIssue(BaseModel):
 
 
 class IssueClassification(BaseModel):
-    category: str
-    priority: str
+    category: Literal[
+        "authentication",
+        "ui",
+        "backend",
+        "database",
+        "performance",
+        "documentation",
+        "bug",
+        "feature-request",
+    ]
+
+    priority: Literal[
+        "low",
+        "medium",
+        "high",
+    ]
+
     summary: str
