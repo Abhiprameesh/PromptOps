@@ -1,14 +1,13 @@
 from fastapi import APIRouter
 
 from app.core.schemas import GitHubIssue, IssueClassification
+from app.services.inference import InferenceService
 
 router = APIRouter(prefix="/infer", tags=["Inference"])
+
+service = InferenceService()
 
 
 @router.post("/", response_model=IssueClassification)
 async def infer(issue: GitHubIssue):
-    return IssueClassification(
-        category="authentication",
-        priority="high",
-        summary="Users cannot log in after resetting passwords."
-    )
+    return await service.infer(issue)
