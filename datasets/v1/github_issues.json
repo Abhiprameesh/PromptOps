@@ -1,0 +1,107 @@
+{
+  "version": "v1",
+  "description": "Initial GitHub issue evaluation dataset",
+  "created_at": "2026-07-16",
+  "cases": [
+    {
+      "id": "GH001",
+      "input": {
+        "title": "Cannot login after password reset",
+        "body": "After resetting my password, I can no longer log into my account. I receive an 'Invalid credentials' message every time."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "high",
+        "summary": "Users cannot log in after resetting their password."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "authentication",
+          "login"
+        ],
+        "notes": "Basic authentication issue."
+      }
+    },
+    {
+      "id": "GH002",
+      "input": {
+        "title": "Add dark mode support",
+        "body": "It would be great if the application supported dark mode. Many users work late at night and prefer a darker interface."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "medium",
+        "summary": "Users requested a dark mode option for the application."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "ui",
+          "feature"
+        ],
+        "notes": "Typical feature request."
+      }
+    },
+    {
+      "id": "GH003",
+      "input": {
+        "title": "README installation instructions are outdated",
+        "body": "The README still tells users to install Python 3.9, but the project now requires Python 3.11. Following the current instructions causes installation failures."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "medium",
+        "summary": "The installation guide needs updating for the current Python version."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "documentation",
+          "readme"
+        ],
+        "notes": "Documentation maintenance issue."
+      }
+    },
+    {
+      "id": "GH004",
+      "input": {
+        "title": "Dashboard loads very slowly",
+        "body": "The analytics dashboard takes around 30 seconds to load after login. Other pages load normally."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "high",
+        "summary": "The analytics dashboard experiences excessive loading times."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "performance",
+          "dashboard"
+        ],
+        "notes": "Performance-related issue."
+      }
+    },
+    {
+      "id": "GH005",
+      "input": {
+        "title": "User creation API returns HTTP 500",
+        "body": "Sending a POST request to /users with valid data returns HTTP 500. The issue started after the latest deployment."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "high",
+        "summary": "The user creation endpoint fails with an internal server error."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "backend",
+          "api"
+        ],
+        "notes": "Backend API failure."
+      }
+    }
+  ]
+}
