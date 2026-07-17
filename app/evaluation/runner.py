@@ -24,13 +24,12 @@ class EvaluationRunner:
         for case in dataset.cases:
 
             try:
-                # Run inference
                 prediction = await self.service.infer(
                     case.input,
                     prompt_config,
                 )
 
-                # Compare predicted category with expected category
+
                 success = (
                     prediction.category
                     == case.expected.category
@@ -39,7 +38,7 @@ class EvaluationRunner:
                 if success:
                     passed += 1
 
-                # Store successful result
+                
                 results.append(
                     CaseResult(
                         case_id=case.id,
@@ -51,7 +50,7 @@ class EvaluationRunner:
 
             except Exception as e:
 
-                # Store failed result without stopping the evaluation
+               
                 results.append(
                     CaseResult(
                         case_id=case.id,
