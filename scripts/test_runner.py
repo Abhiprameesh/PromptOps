@@ -3,16 +3,18 @@ import asyncio
 from app.core.config import load_prompt_config
 from app.evaluation.loader import load_dataset
 from app.evaluation.runner import EvaluationRunner
+from app.storage.database import Database
 
 
 async def main():
 
+    # Load prompt configuration
     config = load_prompt_config(r"prompt\v1.yaml")
 
-    dataset = load_dataset(
-        r"datasets\v1\github_issues.json"
-    )
+    # Load evaluation dataset
+    dataset = load_dataset(r"datasets\v1\github_issues.json")
 
+    # Run evaluation
     runner = EvaluationRunner()
 
     result = await runner.evaluate(
@@ -20,6 +22,7 @@ async def main():
         config,
     )
 
+    # Print summary
     print("=" * 60)
     print("Evaluation Complete")
     print("=" * 60)
@@ -29,6 +32,7 @@ async def main():
     print(f"Failed      : {result.failed_cases}")
     print(f"Accuracy    : {result.accuracy:.2f}%")
 
+    # Print per-case results
     print("\nPer Case Results")
     print("-" * 80)
 
@@ -51,6 +55,22 @@ async def main():
 
         if case.error:
             print(f"        Error: {case.error}")
+
+    # Save results to SQLite
+    db = Database()
+
+    run_id = db.save_run(
+        result=result,
+        prompt_version=config.version,
+        model=config.model,
+    )
+
+    db.close()
+
+    print("\n" + "=" * 60)
+    print(f"Evaluation saved successfully!")
+    print(f"Run ID : {run_id}")
+    print("=" * 60)
 
 
 if __name__ == "__main__":

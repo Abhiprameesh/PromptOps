@@ -1,6 +1,8 @@
 import sqlite3
+from datetime import datetime
 from pathlib import Path
 
+from app.evaluation.results import EvaluationResult
 
 DB_PATH = Path("data/evaluation.db")
 
@@ -62,6 +64,69 @@ class Database:
         """)
 
         self.conn.commit()
+
+    def save_run(
+        self,
+        result: EvaluationResult,
+        prompt_version: str,
+        model: str,
+    ):
+
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        self.cursor.execute(
+            """
+            INSERT INTO evaluation_runs(
+                timestamp,
+                prompt_version,
+                model,
+                total_cases,
+                passed_cases,
+                failed_cases,
+                accuracy
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                timestamp,
+                prompt_version,
+                model,
+                result.total_cases,
+                result.passed_cases,
+                result.failed_cases,
+                result.accuracy,
+            ),
+        )
+
+        run_id = self.cursor.lastrowid
+
+        for case in result.case_results:
+
+            self.cursor.execute(
+                """
+                INSERT INTO case_results(
+                    run_id,
+                    case_id,
+                    expected_category,
+                    predicted_category,
+                    passed,
+                    error
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    run_id,
+                    case.case_id,
+                    case.expected_category,
+                    case.predicted_category,
+                    int(case.passed),
+                    case.error,
+                ),
+            )
+
+        self.conn.commit()
+
+        return run_id
 
     def close(self):
         self.conn.close()
