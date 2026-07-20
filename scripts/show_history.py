@@ -37,4 +37,6 @@ else:
     f"{failed}"
 )
 
+
+
 db.close()
