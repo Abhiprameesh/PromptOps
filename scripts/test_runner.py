@@ -1,8 +1,10 @@
 import asyncio
+from pathlib import Path
 
 from app.core.config import load_prompt_config
 from app.evaluation.loader import load_dataset
 from app.evaluation.runner import EvaluationRunner
+from app.reporting.html_report import HTMLReportGenerator
 from app.storage.database import Database
 
 
@@ -18,8 +20,8 @@ async def main():
     runner = EvaluationRunner()
 
     result = await runner.evaluate(
-        dataset,
-        config,
+        dataset=dataset,
+        prompt_config=config,
     )
 
     # Print summary
@@ -65,11 +67,21 @@ async def main():
         model=config.model,
     )
 
+    # Generate HTML report
+    report_path = HTMLReportGenerator.generate(
+        run_id=run_id,
+        result=result,
+        prompt_version=config.version,
+        model=config.model,
+    )
+
     db.close()
 
+    # Final summary
     print("\n" + "=" * 60)
-    print(f"Evaluation saved successfully!")
-    print(f"Run ID : {run_id}")
+    print("Evaluation saved successfully!")
+    print(f"Run ID           : {run_id}")
+    print(f"HTML Report Path : {report_path}")
     print("=" * 60)
 
 

@@ -1,5 +1,5 @@
+from app.reporting.regression import RegressionDetector
 from app.storage.database import Database
-
 
 db = Database()
 
@@ -13,28 +13,26 @@ if len(runs) < 2:
     print("Need at least two evaluation runs.")
 else:
 
-    current = runs[0]
-    previous = runs[1]
+    report = RegressionDetector.compare(
+        previous_run=runs[1],
+        current_run=runs[0],
+    )
 
-    current_accuracy = current[4]
-    previous_accuracy = previous[4]
+    print(f"Current Run : {report['current_run']}")
+    print(f"Previous Run: {report['previous_run']}")
 
-    difference = current_accuracy - previous_accuracy
-
-    print(f"Current Run : {current[0]}")
-    print(f"Previous Run: {previous[0]}")
-
-    print(f"\nCurrent Accuracy : {current_accuracy:.2f}%")
-    print(f"Previous Accuracy: {previous_accuracy:.2f}%")
+    print()
+    print(f"Current Accuracy : {report['current_accuracy']:.2f}%")
+    print(f"Previous Accuracy: {report['previous_accuracy']:.2f}%")
 
     print()
 
-    if difference > 0:
-        print(f"🟢 Accuracy Improved by {difference:.2f}%")
+    if report["status"] == "improved":
+        print(f"🟢 Accuracy Improved by {report['difference']:.2f}%")
 
-    elif difference < 0:
+    elif report["status"] == "regression":
         print(f"🔴 REGRESSION DETECTED")
-        print(f"Accuracy dropped by {abs(difference):.2f}%")
+        print(f"Accuracy dropped by {abs(report['difference']):.2f}%")
 
     else:
         print("🟡 No change in accuracy")
