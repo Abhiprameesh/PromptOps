@@ -8,6 +8,22 @@ DB_PATH = Path("data/evaluation.db")
 
 
 class Database:
+    def get_last_two_runs(self):
+
+        self.cursor.execute("""
+        SELECT
+            run_id,
+            timestamp,
+            prompt_version,
+            model,
+            accuracy
+        FROM evaluation_runs
+        ORDER BY run_id DESC
+        LIMIT 2
+    """)
+
+        return self.cursor.fetchall()
+    
     def get_all_runs(self):
 
         self.cursor.execute("""
