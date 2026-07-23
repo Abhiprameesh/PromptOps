@@ -59,3 +59,20 @@ build/
 tmp/
 temp/
 data/
+
+
+# VS Code
+.vscode/
+
+# Database
+data/evaluation.db
+
+# Generated reports
+reports/*.html
+
+# Environment
+.env
+
+# macOS / Windows
+.DS_Store
+Thumbs.db

@@ -18,8 +18,6 @@ async def main():
 
     # Run evaluation
     runner = EvaluationRunner()
-
-
     result = await runner.evaluate(
         dataset=dataset,
         prompt_config=config,
