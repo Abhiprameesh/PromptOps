@@ -10,3 +10,4 @@ streamlit
 plotly
 httpx
 aiosqlite 
+streamlit

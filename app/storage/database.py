@@ -8,6 +8,24 @@ DB_PATH = Path("data/evaluation.db")
 
 
 class Database:
+    def get_latest_run(self):
+
+        self.cursor.execute("""
+        SELECT
+            run_id,
+            timestamp,
+            prompt_version,
+            model,
+            total_cases,
+            passed_cases,
+            failed_cases,
+            accuracy
+        FROM evaluation_runs
+        ORDER BY run_id DESC
+        LIMIT 1
+    """)
+
+        return self.cursor.fetchone()
     def get_run_summary(self, run_id):
 
         self.cursor.execute("""
