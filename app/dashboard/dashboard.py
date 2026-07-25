@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+import pandas as pd
 
 # Add project root to sys.path to resolve the 'app' module import
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
@@ -38,6 +39,39 @@ col4.metric("Run ID", run_id)
 
 st.write("---")
 
-st.write(f"**Prompt Version:** {prompt}")
-st.write(f"**Model:** {model}")
-st.write(f"**Timestamp:** {timestamp}")
+left, right = st.columns(2)
+
+with left:
+    st.markdown(f"**Prompt Version:** `{prompt}`")
+    st.markdown(f"**Model:** `{model}`")
+
+with right:
+    st.markdown(f"**Timestamp:** `{timestamp}`")
+
+st.write("---")
+st.subheader("📋 Evaluation History")
+
+db = Database()
+
+runs = db.get_all_runs()
+
+db.close()
+
+history = pd.DataFrame(
+    runs,
+    columns=[
+        "Run ID",
+        "Timestamp",
+        "Prompt",
+        "Model",
+        "Accuracy (%)",
+        "Passed",
+        "Failed",
+    ],
+)
+
+st.dataframe(
+    history,
+    use_container_width=True,
+    hide_index=True,
+)
