@@ -11,3 +11,4 @@ plotly
 httpx
 aiosqlite 
 streamlit
+plotly

@@ -1,7 +1,8 @@
 import sys
 from pathlib import Path
 import pandas as pd
-
+import plotly.express as px
+import pandas as pd
 # Add project root to sys.path to resolve the 'app' module import
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
@@ -74,4 +75,31 @@ st.dataframe(
     history,
     use_container_width=True,
     hide_index=True,
+)
+st.write("---")
+st.subheader("📈 Accuracy Trend")
+
+chart_df = history.copy()
+
+# Show oldest → newest
+chart_df = chart_df.sort_values("Run ID")
+
+fig = px.line(
+    chart_df,
+    x="Run ID",
+    y="Accuracy (%)",
+    markers=True,
+    title="Accuracy Across Evaluation Runs",
+)
+
+fig.update_layout(
+    xaxis_title="Run ID",
+    yaxis_title="Accuracy (%)",
+    yaxis_range=[0, 100],
+    template="plotly_dark",
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True,
 )
