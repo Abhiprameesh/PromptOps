@@ -1,13 +1,15 @@
 import sys
 from pathlib import Path
-import pandas as pd
-import plotly.express as px
-import pandas as pd
-from app.reporting.regression import RegressionDetector
-# Add project root to sys.path to resolve the 'app' module import
+
+# 1. Add project root to sys.path FIRST to resolve the 'app' module import
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
+# 2. Now you can safely import from the 'app' module
+import pandas as pd
+import plotly.express as px
 import streamlit as st
+
+from app.reporting.regression import RegressionDetector
 from app.storage.database import Database
 
 st.set_page_config(
@@ -71,19 +73,6 @@ history = pd.DataFrame(
     ],
 )
 
-history = pd.DataFrame(
-    runs,
-    columns=[
-        "Run ID",
-        "Timestamp",
-        "Prompt",
-        "Model",
-        "Accuracy (%)",
-        "Passed",
-        "Failed",
-    ],
-)
-
 st.dataframe(
     history,
     use_container_width=True,
@@ -118,12 +107,6 @@ st.plotly_chart(
 )
 st.write("---")
 st.subheader("🚨 Regression Status")
-
-if len(runs) >= 2:
-    report = RegressionDetector.compare(
-        previous_run=runs[1],
-        current_run=runs[0],
-    )
 
 if len(runs) >= 2:
 
