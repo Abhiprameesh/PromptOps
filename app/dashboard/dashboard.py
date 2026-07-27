@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import pandas as pd
+from app.reporting.regression import RegressionDetector
 # Add project root to sys.path to resolve the 'app' module import
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
@@ -103,3 +104,34 @@ st.plotly_chart(
     fig,
     use_container_width=True,
 )
+st.write("---")
+st.subheader("🚨 Regression Status")
+
+db = Database()
+
+runs = db.get_last_two_runs()
+
+db.close()
+
+if len(runs) >= 2:
+
+    report = RegressionDetector.compare(
+        previous_run=runs[1],
+        current_run=runs[0],
+    )
+
+    if report["status"] == "improved":
+        st.success(
+            f"Accuracy Improved by {report['difference']:.2f}%"
+        )
+
+    elif report["status"] == "regression":
+        st.error(
+            f"Regression Detected!\n\nAccuracy dropped by {abs(report['difference']):.2f}%"
+        )
+
+    else:
+        st.info("No Change in Accuracy")
+
+else:
+    st.warning("Need at least two runs.")
