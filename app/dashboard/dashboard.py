@@ -18,11 +18,16 @@ st.set_page_config(
 
 st.title("🤖 PromptOps Dashboard")
 
+# Connect to database once
 db = Database()
 
-run = db.get_latest_run()
+latest = db.get_latest_run()
+history = db.get_all_runs()
+runs = db.get_last_two_runs()
 
 db.close()
+
+run = latest
 
 if run is None:
     st.warning("No evaluation runs found.")
@@ -53,11 +58,18 @@ with right:
 st.write("---")
 st.subheader("📋 Evaluation History")
 
-db = Database()
-
-runs = db.get_all_runs()
-
-db.close()
+history = pd.DataFrame(
+    history,
+    columns=[
+        "Run ID",
+        "Timestamp",
+        "Prompt",
+        "Model",
+        "Accuracy (%)",
+        "Passed",
+        "Failed",
+    ],
+)
 
 history = pd.DataFrame(
     runs,
@@ -107,11 +119,11 @@ st.plotly_chart(
 st.write("---")
 st.subheader("🚨 Regression Status")
 
-db = Database()
-
-runs = db.get_last_two_runs()
-
-db.close()
+if len(runs) >= 2:
+    report = RegressionDetector.compare(
+        previous_run=runs[1],
+        current_run=runs[0],
+    )
 
 if len(runs) >= 2:
 
