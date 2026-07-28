@@ -8,6 +8,20 @@ DB_PATH = Path("data/evaluation.db")
 
 
 class Database:
+    def get_case_results(self, run_id):
+        self.cursor.execute("""
+        SELECT
+            case_id,
+            expected_category,
+            predicted_category,
+            passed,
+            error
+        FROM case_results
+        WHERE run_id = ?
+        ORDER BY case_id
+    """, (run_id,))
+
+        return self.cursor.fetchall()
     def get_all_runs(self):
         self.cursor.execute("""
         SELECT

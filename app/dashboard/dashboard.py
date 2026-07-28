@@ -27,6 +27,12 @@ latest = db.get_latest_run()
 history = db.get_all_runs()
 runs = db.get_last_two_runs()
 
+case_results = []
+
+if latest:
+    latest_run_id = latest[0]
+    case_results = db.get_case_results(latest_run_id)
+
 db.close()
 
 run = latest
@@ -130,3 +136,40 @@ if len(runs) >= 2:
 
 else:
     st.warning("Need at least two runs.")
+
+st.write("---")
+st.subheader("❌ Case Explorer")
+
+if case_results:
+
+    cases_df = pd.DataFrame(
+        case_results,
+        columns=[
+            "Case ID",
+            "Expected",
+            "Predicted",
+            "Passed",
+            "Error"
+        ]
+    )
+
+    cases_df["Status"] = cases_df["Passed"].apply(
+        lambda x: "✅ PASS" if x else "❌ FAIL"
+    )
+
+    st.dataframe(
+        cases_df[
+            [
+                "Case ID",
+                "Expected",
+                "Predicted",
+                "Status",
+                "Error"
+            ]
+        ],
+        use_container_width=True,
+        hide_index=True,
+    )
+
+else:
+    st.info("No case results available.")
