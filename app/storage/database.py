@@ -8,6 +8,7 @@ DB_PATH = Path("data/evaluation.db")
 
 
 class Database:
+    
     def get_case_results(self, run_id):
         self.cursor.execute("""
         SELECT

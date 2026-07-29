@@ -171,5 +171,6 @@ if case_results:
         hide_index=True,
     )
 
+
 else:
     st.info("No case results available.")
