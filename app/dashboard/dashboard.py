@@ -170,7 +170,5 @@ if case_results:
         use_container_width=True,
         hide_index=True,
     )
-
-
 else:
     st.info("No case results available.")

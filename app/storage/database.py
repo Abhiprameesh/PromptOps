@@ -23,6 +23,7 @@ class Database:
     """, (run_id,))
 
         return self.cursor.fetchall()
+        
     def get_all_runs(self):
         self.cursor.execute("""
         SELECT
