@@ -157,8 +157,20 @@ if case_results:
         lambda x: "✅ PASS" if x else "❌ FAIL"
     )
 
-    st.dataframe(
-        cases_df[
+    # Summary Metrics
+    passed = cases_df["Passed"].sum()
+    failed = len(cases_df) - passed
+
+    c1, c2, c3 = st.columns(3)
+
+    c1.metric("✅ Passed", passed)
+    c2.metric("❌ Failed", failed)
+    c3.metric("Success Rate", f"{passed/len(cases_df)*100:.0f}%")
+
+    # Hide Error column if empty
+    if cases_df["Error"].notna().any():
+
+        display_df = cases_df[
             [
                 "Case ID",
                 "Expected",
@@ -166,9 +178,24 @@ if case_results:
                 "Status",
                 "Error"
             ]
-        ],
+        ]
+
+    else:
+
+        display_df = cases_df[
+            [
+                "Case ID",
+                "Expected",
+                "Predicted",
+                "Status"
+            ]
+        ]
+
+    st.dataframe(
+        display_df,
         use_container_width=True,
         hide_index=True,
     )
+
 else:
     st.info("No case results available.")
