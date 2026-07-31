@@ -23,19 +23,35 @@ st.title("🤖 PromptOps Dashboard")
 # Connect to database once
 db = Database()
 
-latest = db.get_latest_run()
+# Get all runs for history
 history = db.get_all_runs()
+
+if not history:
+    db.close()
+    st.warning("No evaluation runs found.")
+    st.stop()
+
+# Sidebar
+run_ids = [row[0] for row in history]
+
+st.sidebar.header("📂 Evaluation Runs")
+
+selected_run = st.sidebar.selectbox(
+    "Choose Run",
+    run_ids,
+    index=0,
+)
+
+# Load selected run
+run = db.get_run_by_id(selected_run)
+
+# Latest two runs (used only for regression)
 runs = db.get_last_two_runs()
 
-case_results = []
-
-if latest:
-    latest_run_id = latest[0]
-    case_results = db.get_case_results(latest_run_id)
+# Load case results for selected run
+case_results = db.get_case_results(selected_run)
 
 db.close()
-
-run = latest
 
 if run is None:
     st.warning("No evaluation runs found.")
@@ -43,7 +59,7 @@ if run is None:
 
 run_id, timestamp, prompt, model, total, passed, failed, accuracy = run
 
-st.subheader("Latest Evaluation")
+st.subheader(f"📊 Evaluation Summary (Run {run_id})")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -66,7 +82,7 @@ with right:
 st.write("---")
 st.subheader("📋 Evaluation History")
 
-history = pd.DataFrame(
+history_df = pd.DataFrame(
     history,
     columns=[
         "Run ID",
@@ -80,14 +96,14 @@ history = pd.DataFrame(
 )
 
 st.dataframe(
-    history,
+    history_df,
     use_container_width=True,
     hide_index=True,
 )
 st.write("---")
 st.subheader("📈 Accuracy Trend")
 
-chart_df = history.copy()
+chart_df = history_df.copy()
 
 # Show oldest → newest
 chart_df = chart_df.sort_values("Run ID")
@@ -114,28 +130,35 @@ st.plotly_chart(
 st.write("---")
 st.subheader("🚨 Regression Status")
 
-if len(runs) >= 2:
+latest_run_id = max(run_ids)
 
-    report = RegressionDetector.compare(
-        previous_run=runs[1],
-        current_run=runs[0],
-    )
+if selected_run == latest_run_id:
 
-    if report["status"] == "improved":
-        st.success(
-            f"Accuracy Improved by {report['difference']:.2f}%"
+    if len(runs) >= 2:
+
+        report = RegressionDetector.compare(
+            previous_run=runs[1],
+            current_run=runs[0],
         )
 
-    elif report["status"] == "regression":
-        st.error(
-            f"Regression Detected!\n\nAccuracy dropped by {abs(report['difference']):.2f}%"
-        )
+        if report["status"] == "improved":
+            st.success(
+                f"Accuracy Improved by {report['difference']:.2f}%"
+            )
+
+        elif report["status"] == "regression":
+            st.error(
+                f"Regression Detected!\n\nAccuracy dropped by {abs(report['difference']):.2f}%"
+            )
+
+        else:
+            st.info("No Change in Accuracy")
 
     else:
-        st.info("No Change in Accuracy")
+        st.warning("Need at least two runs.")
 
 else:
-    st.warning("Need at least two runs.")
+    st.info("Regression status is shown only for the latest evaluation run.")
 
 st.write("---")
 st.subheader("❌ Case Explorer")
