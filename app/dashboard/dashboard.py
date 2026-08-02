@@ -41,15 +41,23 @@ selected_run = st.sidebar.selectbox(
     run_ids,
     index=0,
 )
+st.sidebar.markdown("---")
 
+compare_run = st.sidebar.selectbox(
+    "Compare With",
+    run_ids,
+    index=min(1, len(run_ids) - 1),
+)
 # Load selected run
 run = db.get_run_by_id(selected_run)
+comparison_run = db.get_run_by_id(compare_run)
 
 # Latest two runs (used only for regression)
 runs = db.get_last_two_runs()
 
 # Load case results for selected run
 case_results = db.get_case_results(selected_run)
+comparison_case_results = db.get_case_results(compare_run)
 
 db.close()
 
@@ -128,6 +136,32 @@ st.plotly_chart(
     use_container_width=True,
 )
 
+st.write("---")
+st.subheader("📊 Run Comparison")
+
+if comparison_run:
+
+    comparison_df = pd.DataFrame(
+        {
+            "Metric": [
+                "Accuracy",
+                "Passed",
+                "Failed",
+            ],
+            f"Run {compare_run}": [
+                comparison_run[7],
+                comparison_run[5],
+                comparison_run[6],
+            ],
+            f"Run {selected_run}": [
+                run[7],
+                run[5],
+                run[6],
+            ],
+        }
+    )
+
+    st.table(comparison_df)
 st.write("---")
 st.subheader("🚨 Regression Status")
 
