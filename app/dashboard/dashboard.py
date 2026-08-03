@@ -160,8 +160,59 @@ if comparison_run:
             ],
         }
     )
-
     st.table(comparison_df)
+st.table(comparison_df)
+
+# ⬇⬇⬇ PUT THE NEW CODE HERE ⬇⬇⬇
+
+st.write("---")
+st.subheader("🔍 Case-by-Case Comparison")
+
+comparison_rows = []
+
+comparison_lookup = {
+    row[0]: row
+    for row in comparison_case_results
+}
+
+for current_case in case_results:
+
+    case_id = current_case[0]
+
+    previous_case = comparison_lookup.get(case_id)
+
+    if previous_case is None:
+        continue
+
+    previous_status = "✅ PASS" if previous_case[3] else "❌ FAIL"
+    current_status = "✅ PASS" if current_case[3] else "❌ FAIL"
+
+    if previous_case[3] == current_case[3]:
+        change = "No Change"
+
+    elif not previous_case[3] and current_case[3]:
+        change = "🟢 Fixed"
+
+    else:
+        change = "🔴 Regressed"
+
+    comparison_rows.append(
+        {
+            "Case ID": case_id,
+            f"Run {compare_run}": previous_status,
+            f"Run {selected_run}": current_status,
+            "Change": change,
+        }
+    )
+
+case_comparison_df = pd.DataFrame(comparison_rows)
+
+st.dataframe(
+    case_comparison_df,
+    use_container_width=True,
+    hide_index=True,
+)
+
 st.write("---")
 st.subheader("🚨 Regression Status")
 
