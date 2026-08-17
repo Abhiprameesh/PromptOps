@@ -8,20 +8,6 @@ DB_PATH = Path("data/evaluation.db")
 
 
 class Database:
-    def get_case_results(self, run_id):
-        self.cursor.execute("""
-        SELECT
-            case_id,
-            expected_category,
-            predicted_category,
-            passed,
-            error
-        FROM case_results
-        WHERE run_id = ?
-        ORDER BY case_id
-    """, (run_id,))
-
-        return self.cursor.fetchall()
     def get_run_by_id(self, run_id):
         self.cursor.execute("""
         SELECT
@@ -38,7 +24,7 @@ class Database:
     """, (run_id,))
 
         return self.cursor.fetchone()
-    
+
     def get_case_results(self, run_id):
         self.cursor.execute("""
         SELECT
@@ -53,7 +39,7 @@ class Database:
     """, (run_id,))
 
         return self.cursor.fetchall()
-        
+
     def get_all_runs(self):
         self.cursor.execute("""
         SELECT
@@ -69,8 +55,8 @@ class Database:
     """)
 
         return self.cursor.fetchall()
-    def get_latest_run(self):
 
+    def get_latest_run(self):
         self.cursor.execute("""
         SELECT
             run_id,
@@ -87,8 +73,8 @@ class Database:
     """)
 
         return self.cursor.fetchone()
-    def get_run_summary(self, run_id):
 
+    def get_run_summary(self, run_id):
         self.cursor.execute("""
         SELECT
             run_id,
@@ -104,8 +90,8 @@ class Database:
     """, (run_id,))
 
         return self.cursor.fetchone()
-    def get_run_details(self, run_id):
 
+    def get_run_details(self, run_id):
         self.cursor.execute("""
         SELECT
             case_id,
@@ -119,40 +105,8 @@ class Database:
     """, (run_id,))
 
         return self.cursor.fetchall()
-    def get_run_details(self, run_id):
 
-        self.cursor.execute("""
-        SELECT
-            case_id,
-            expected_category,
-            predicted_category,
-            passed,
-            error
-        FROM case_results
-        WHERE run_id = ?
-        ORDER BY case_id
-    """, (run_id,))
-
-        return self.cursor.fetchall()
-    def get_run_summary(self, run_id):
-
-        self.cursor.execute("""
-        SELECT
-            run_id,
-            timestamp,
-            prompt_version,
-            model,
-            total_cases,
-            passed_cases,
-            failed_cases,
-            accuracy
-        FROM evaluation_runs
-        WHERE run_id = ?
-    """, (run_id,))
-
-        return self.cursor.fetchone()
     def get_last_two_runs(self):
-
         self.cursor.execute("""
         SELECT
             run_id,
@@ -166,23 +120,7 @@ class Database:
     """)
 
         return self.cursor.fetchall()
-    
-    def get_all_runs(self):
 
-        self.cursor.execute("""
-            SELECT
-                run_id,
-                timestamp,
-                prompt_version,
-                model,
-                accuracy,
-                passed_cases,
-                failed_cases
-            FROM evaluation_runs
-            ORDER BY run_id DESC
-        """)
-
-        return self.cursor.fetchall()
 
     def __init__(self):
 

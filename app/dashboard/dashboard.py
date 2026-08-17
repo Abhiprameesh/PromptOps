@@ -1,15 +1,25 @@
 import sys
 from pathlib import Path
 
-# 1. Add project root to sys.path FIRST to resolve the 'app' module import
+# Add project root to sys.path FIRST to resolve imports
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-# 2. Now you can safely import from the 'app' module
-import pandas as pd
-import plotly.express as px
 import streamlit as st
 
-from app.reporting.regression import RegressionDetector
+from app.dashboard.charts import render_accuracy_trend_chart
+from app.dashboard.components import (
+    render_header_metrics,
+    render_interactive_runner,
+    render_metadata,
+    render_prompt_diff_viewer,
+    render_regression_status,
+)
+from app.dashboard.tables import (
+    render_case_comparison_table,
+    render_case_explorer_table,
+    render_history_table,
+    render_run_comparison_table,
+)
 from app.storage.database import Database
 
 st.set_page_config(
@@ -22,18 +32,18 @@ st.title("🤖 PromptOps Dashboard")
 
 # Connect to database once
 db = Database()
-
-# Get all runs for history
 history = db.get_all_runs()
 
 if not history:
     db.close()
     st.warning("No evaluation runs found.")
+
+    # Show runner panel so a run can be triggered
+    render_interactive_runner()
     st.stop()
 
 # Sidebar
 run_ids = [row[0] for row in history]
-
 st.sidebar.header("📂 Evaluation Runs")
 
 selected_run = st.sidebar.selectbox(
@@ -48,14 +58,15 @@ compare_run = st.sidebar.selectbox(
     run_ids,
     index=min(1, len(run_ids) - 1),
 )
-# Load selected run
+
+# Load selected runs details
 run = db.get_run_by_id(selected_run)
 comparison_run = db.get_run_by_id(compare_run)
 
 # Latest two runs (used only for regression)
 runs = db.get_last_two_runs()
 
-# Load case results for selected run
+# Load case results for selected runs
 case_results = db.get_case_results(selected_run)
 comparison_case_results = db.get_case_results(compare_run)
 
@@ -65,248 +76,49 @@ if run is None:
     st.warning("No evaluation runs found.")
     st.stop()
 
-run_id, timestamp, prompt, model, total, passed, failed, accuracy = run
-
-st.subheader(f"📊 Evaluation Summary (Run {run_id})")
-
-col1, col2, col3, col4 = st.columns(4)
-
-col1.metric("Accuracy", f"{accuracy:.2f}%")
-col2.metric("Passed", passed)
-col3.metric("Failed", failed)
-col4.metric("Run ID", run_id)
-
+# Render interactive runner control
+render_interactive_runner()
 st.write("---")
 
-left, right = st.columns(2)
-
-with left:
-    st.markdown(f"**Prompt Version:** `{prompt}`")
-    st.markdown(f"**Model:** `{model}`")
-
-with right:
-    st.markdown(f"**Timestamp:** `{timestamp}`")
-
+# Render summary stats and metadata
+st.subheader(f"📊 Evaluation Summary (Run {selected_run})")
+render_header_metrics(run)
 st.write("---")
+render_metadata(run)
+st.write("---")
+
+# Render evaluation history table
 st.subheader("📋 Evaluation History")
-
-history_df = pd.DataFrame(
-    history,
-    columns=[
-        "Run ID",
-        "Timestamp",
-        "Prompt",
-        "Model",
-        "Accuracy (%)",
-        "Passed",
-        "Failed",
-    ],
-)
-
-st.dataframe(
-    history_df,
-    use_container_width=True,
-    hide_index=True,
-)
+history_df = render_history_table(history)
 st.write("---")
+
+# Render line chart trend
 st.subheader("📈 Accuracy Trend")
-
-chart_df = history_df.copy()
-
-# Show oldest → newest
-chart_df = chart_df.sort_values("Run ID")
-
-fig = px.line(
-    chart_df,
-    x="Run ID",
-    y="Accuracy (%)",
-    markers=True,
-    title="Accuracy Across Evaluation Runs",
-)
-
-fig.update_layout(
-    xaxis_title="Run ID",
-    yaxis_title="Accuracy (%)",
-    yaxis_range=[0, 100],
-    template="plotly_dark",
-)
-
-st.plotly_chart(
-    fig,
-    use_container_width=True,
-)
-
+render_accuracy_trend_chart(history_df)
 st.write("---")
+
+# Render comparative tables
 st.subheader("📊 Run Comparison")
-
-if comparison_run:
-
-    comparison_df = pd.DataFrame(
-        {
-            "Metric": [
-                "Accuracy",
-                "Passed",
-                "Failed",
-            ],
-            f"Run {compare_run}": [
-                comparison_run[7],
-                comparison_run[5],
-                comparison_run[6],
-            ],
-            f"Run {selected_run}": [
-                run[7],
-                run[5],
-                run[6],
-            ],
-        }
-    )
-    st.table(comparison_df)
-st.table(comparison_df)
-
-# ⬇⬇⬇ PUT THE NEW CODE HERE ⬇⬇⬇
-
+render_run_comparison_table(run, comparison_run, selected_run, compare_run)
 st.write("---")
+
+# Render prompt diff comparison
+if comparison_run and run:
+    render_prompt_diff_viewer(comparison_run[2], run[2])
+    st.write("---")
+
+# Render case-by-case comparison
 st.subheader("🔍 Case-by-Case Comparison")
-
-comparison_rows = []
-
-comparison_lookup = {
-    row[0]: row
-    for row in comparison_case_results
-}
-
-for current_case in case_results:
-
-    case_id = current_case[0]
-
-    previous_case = comparison_lookup.get(case_id)
-
-    if previous_case is None:
-        continue
-
-    previous_status = "✅ PASS" if previous_case[3] else "❌ FAIL"
-    current_status = "✅ PASS" if current_case[3] else "❌ FAIL"
-
-    if previous_case[3] == current_case[3]:
-        change = "No Change"
-
-    elif not previous_case[3] and current_case[3]:
-        change = "🟢 Fixed"
-
-    else:
-        change = "🔴 Regressed"
-
-    comparison_rows.append(
-        {
-            "Case ID": case_id,
-            f"Run {compare_run}": previous_status,
-            f"Run {selected_run}": current_status,
-            "Change": change,
-        }
-    )
-
-case_comparison_df = pd.DataFrame(comparison_rows)
-
-st.dataframe(
-    case_comparison_df,
-    use_container_width=True,
-    hide_index=True,
+render_case_comparison_table(
+    case_results, comparison_case_results, selected_run, compare_run
 )
-
 st.write("---")
+
+# Render regression warnings/alerts
 st.subheader("🚨 Regression Status")
-
-latest_run_id = max(run_ids)
-
-if selected_run == latest_run_id:
-
-    if len(runs) >= 2:
-
-        report = RegressionDetector.compare(
-            previous_run=runs[1],
-            current_run=runs[0],
-        )
-
-        if report["status"] == "improved":
-            st.success(
-                f"Accuracy Improved by {report['difference']:.2f}%"
-            )
-
-        elif report["status"] == "regression":
-            st.error(
-                f"Regression Detected!\n\nAccuracy dropped by {abs(report['difference']):.2f}%"
-            )
-
-        else:
-            st.info("No Change in Accuracy")
-
-    else:
-        st.warning("Need at least two runs.")
-
-else:
-    st.info("Regression status is shown only for the latest evaluation run.")
-
+render_regression_status(selected_run, run_ids, runs)
 st.write("---")
+
+# Render details on failure/success cases
 st.subheader("❌ Case Explorer")
-
-if case_results:
-
-    cases_df = pd.DataFrame(
-        case_results,
-        columns=[
-            "Case ID",
-            "Expected",
-            "Predicted",
-            "Passed",
-            "Error"
-        ]
-    )
-
-    cases_df["Status"] = cases_df["Passed"].apply(
-        lambda x: "✅ PASS" if x else "❌ FAIL"
-    )
-
-    # Summary Metrics
-    passed = cases_df["Passed"].sum()
-    failed = len(cases_df) - passed
-
-    c1, c2, c3 = st.columns(3)
-
-    c1.metric("✅ Passed", passed)
-    c2.metric("❌ Failed", failed)
-    c3.metric("Success Rate", f"{passed/len(cases_df)*100:.0f}%")
-
-    # Hide Error column if empty
-    if cases_df["Error"].notna().any():
-
-        display_df = cases_df[
-            [
-                "Case ID",
-                "Expected",
-                "Predicted",
-                "Status",
-                "Error"
-            ]
-        ]
-
-    else:
-
-        display_df = cases_df[
-            [
-                "Case ID",
-                "Expected",
-                "Predicted",
-                "Status"
-            ]
-        ]
-
-    st.dataframe(
-        display_df,
-        use_container_width=True,
-        hide_index=True,
-    )
-
-else:
-    st.info("No case results available.")
-
-    
+render_case_explorer_table(case_results)

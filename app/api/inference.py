@@ -7,7 +7,7 @@ from app.services.inference import InferenceService
 router = APIRouter(prefix="/infer", tags=["Inference"])
 
 service = InferenceService()
-config = load_prompt_config("prompts/v1.yaml")
+config = load_prompt_config("prompt/v1.yaml")
 
 
 @router.post("/")
