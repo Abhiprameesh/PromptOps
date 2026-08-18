@@ -134,6 +134,8 @@ model: "gemma3:4b"  # Specify any model you have pulled in Ollama
 temperature: 0.0     # 0.0 is recommended for deterministic evaluation results
 max_tokens: 150
 
+
+
 system_prompt: |
   You are an expert classification assistant. Classify the user input into: bug, feature-request, or support.
   Return only a JSON object: {"category": "bug | feature-request | support", "priority": "low | medium | high", "summary": "One sentence summary"}
