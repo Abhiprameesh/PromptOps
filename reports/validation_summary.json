@@ -1,0 +1,367 @@
+{
+  "models": {
+    "gemma3:4b": {
+      "run_id": 6,
+      "total_cases": 5,
+      "passed_cases": 2,
+      "failed_cases": 3,
+      "accuracy": 40.0,
+      "category_accuracy": 60.0,
+      "priority_accuracy": 80.0,
+      "composite_accuracy": 40.0,
+      "avg_latency_ms": 32988.58,
+      "category_macro_f1": 0.5333,
+      "category_weighted_f1": 0.5333,
+      "priority_macro_f1": 0.8,
+      "per_class_category": {
+        "backend": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "bug": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "support": 1
+        },
+        "documentation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "feature-request": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "performance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix_category": {
+        "backend": {
+          "backend": 0,
+          "bug": 1,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "bug": {
+          "backend": 0,
+          "bug": 1,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "documentation": {
+          "backend": 0,
+          "bug": 0,
+          "documentation": 1,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "feature-request": {
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 1
+        },
+        "performance": {
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 1,
+          "ui": 0
+        }
+      }
+    },
+    "mistral:latest": {
+      "run_id": 7,
+      "total_cases": 5,
+      "passed_cases": 2,
+      "failed_cases": 3,
+      "accuracy": 40.0,
+      "category_accuracy": 60.0,
+      "priority_accuracy": 80.0,
+      "composite_accuracy": 40.0,
+      "avg_latency_ms": 42725.04,
+      "category_macro_f1": 0.6,
+      "category_weighted_f1": 0.6,
+      "priority_macro_f1": 0.7619,
+      "per_class_category": {
+        "backend": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "bug": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "documentation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "feature-request": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "performance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix_category": {
+        "backend": {
+          "authentication": 0,
+          "backend": 1,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "bug": {
+          "authentication": 1,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "documentation": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 1,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "feature-request": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 1
+        },
+        "performance": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 1,
+          "ui": 0
+        }
+      }
+    },
+    "llama3:latest": {
+      "run_id": 8,
+      "total_cases": 5,
+      "passed_cases": 1,
+      "failed_cases": 4,
+      "accuracy": 20.0,
+      "category_accuracy": 40.0,
+      "priority_accuracy": 80.0,
+      "composite_accuracy": 20.0,
+      "avg_latency_ms": 61257.11,
+      "category_macro_f1": 0.4,
+      "category_weighted_f1": 0.4,
+      "priority_macro_f1": 0.7619,
+      "per_class_category": {
+        "backend": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "bug": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "documentation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "feature-request": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "performance": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix_category": {
+        "backend": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 1,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "bug": {
+          "authentication": 1,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "documentation": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 1,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 0
+        },
+        "feature-request": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 0,
+          "ui": 1
+        },
+        "performance": {
+          "authentication": 0,
+          "backend": 0,
+          "bug": 0,
+          "documentation": 0,
+          "feature-request": 0,
+          "performance": 1,
+          "ui": 0
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "Gemma \u2794 Mistral": {
+      "previous_run": 6,
+      "current_run": 7,
+      "difference": 0.0,
+      "status": "regression",
+      "severity": "critical",
+      "recommended_action": "BLOCKED: Critical regression detected. 2 case(s) broke and 4 metric(s)/class(es) severely degraded.",
+      "newly_failed": [
+        "GH001",
+        "GH003"
+      ],
+      "recovered": [
+        "GH004",
+        "GH005"
+      ],
+      "unchanged_passing": [],
+      "unchanged_failing": [
+        "GH002"
+      ]
+    },
+    "Mistral \u2794 Llama": {
+      "previous_run": 7,
+      "current_run": 8,
+      "difference": -20.0,
+      "status": "regression",
+      "severity": "critical",
+      "recommended_action": "BLOCKED: Critical regression detected. 1 case(s) broke and 8 metric(s)/class(es) severely degraded.",
+      "newly_failed": [
+        "GH005"
+      ],
+      "recovered": [],
+      "unchanged_passing": [
+        "GH004"
+      ],
+      "unchanged_failing": [
+        "GH001",
+        "GH002",
+        "GH003"
+      ]
+    },
+    "Gemma \u2794 Llama": {
+      "previous_run": 6,
+      "current_run": 8,
+      "difference": -20.0,
+      "status": "regression",
+      "severity": "critical",
+      "recommended_action": "BLOCKED: Critical regression detected. 2 case(s) broke and 9 metric(s)/class(es) severely degraded.",
+      "newly_failed": [
+        "GH001",
+        "GH003"
+      ],
+      "recovered": [
+        "GH004"
+      ],
+      "unchanged_passing": [],
+      "unchanged_failing": [
+        "GH002",
+        "GH005"
+      ]
+    },
+    "Historical Baseline #4 \u2794 Gemma": {
+      "previous_run": 4,
+      "current_run": 6,
+      "difference": 0.0,
+      "status": "warning",
+      "severity": "warning",
+      "recommended_action": "WARNING: Performance degradation detected within warning limits. 1 newly failed case(s), 1 warning metric(s). Review before deployment.",
+      "newly_failed": [
+        "GH004"
+      ],
+      "recovered": [
+        "GH001"
+      ],
+      "unchanged_passing": [
+        "GH003"
+      ],
+      "unchanged_failing": [
+        "GH002",
+        "GH005"
+      ]
+    }
+  },
+  "model_run_ids": {
+    "gemma3:4b": 6,
+    "mistral:latest": 7,
+    "llama3:latest": 8
+  },
+  "controlled_run_id": 9
+}

@@ -1,0 +1,1086 @@
+{
+  "version": "v2",
+  "description": "Expanded GitHub issue evaluation dataset with 50 diverse multi-category test cases",
+  "created_at": "2026-11-23",
+  "cases": [
+    {
+      "id": "GH001",
+      "input": {
+        "title": "Cannot login after password reset",
+        "body": "After resetting my password, I can no longer log into my account. I receive an 'Invalid credentials' message every time."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "high",
+        "summary": "Users cannot log in after resetting their password."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "authentication",
+          "login"
+        ],
+        "notes": "Basic authentication issue."
+      }
+    },
+    {
+      "id": "GH002",
+      "input": {
+        "title": "Add dark mode support",
+        "body": "It would be great if the application supported dark mode. Many users work late at night and prefer a darker interface."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "medium",
+        "summary": "Users requested a dark mode option for the application."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "ui",
+          "feature"
+        ],
+        "notes": "Typical feature request."
+      }
+    },
+    {
+      "id": "GH003",
+      "input": {
+        "title": "README installation instructions are outdated",
+        "body": "The README still tells users to install Python 3.9, but the project now requires Python 3.11. Following the current instructions causes installation failures."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "medium",
+        "summary": "The installation guide needs updating for the current Python version."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "documentation",
+          "readme"
+        ],
+        "notes": "Documentation maintenance issue."
+      }
+    },
+    {
+      "id": "GH004",
+      "input": {
+        "title": "Dashboard loads very slowly",
+        "body": "The analytics dashboard takes around 30 seconds to load after login. Other pages load normally."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "high",
+        "summary": "The analytics dashboard experiences excessive loading times."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "performance",
+          "dashboard"
+        ],
+        "notes": "Performance-related issue."
+      }
+    },
+    {
+      "id": "GH005",
+      "input": {
+        "title": "User creation API returns HTTP 500",
+        "body": "Sending a POST request to /users with valid data returns HTTP 500. The issue started after the latest deployment."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "high",
+        "summary": "The user creation endpoint fails with an internal server error."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "backend",
+          "api"
+        ],
+        "notes": "Backend API failure."
+      }
+    },
+    {
+      "id": "GH006",
+      "input": {
+        "title": "OAuth2 Google login fails with invalid_grant on token exchange",
+        "body": "When attempting to log in via Google OAuth, after redirecting back to /auth/callback/google, the server returns 400 Bad Request with {'error': 'invalid_grant', 'error_description': 'Code expired'}. This affects all users attempting single sign-on."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "high",
+        "summary": "Google OAuth SSO login fails due to token exchange grant errors."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "authentication",
+          "oauth",
+          "sso"
+        ],
+        "notes": "Direct OAuth authentication flow breakdown."
+      }
+    },
+    {
+      "id": "GH007",
+      "input": {
+        "title": "Session cookies not cleared after explicit logout",
+        "body": "When a user clicks Logout, the client redirects to /login, but the session cookie 'session_id' remains valid on the browser. Pasting an authenticated URL into another tab still grants access to the previous user account."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "high",
+        "summary": "Session cookies remain valid after user logout allowing unauthorized session reuse."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "authentication",
+          "session",
+          "security"
+        ],
+        "notes": "Session invalidation failure during logout."
+      }
+    },
+    {
+      "id": "GH008",
+      "input": {
+        "title": "Support TOTP hardware security keys (FIDO2/WebAuthn)",
+        "body": "Our enterprise compliance policy requires support for physical security keys like YubiKey for two-factor authentication. Currently only SMS and authenticator apps are available."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "medium",
+        "summary": "Request for FIDO2 and WebAuthn hardware security key authentication support."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "authentication",
+          "mfa",
+          "webauthn"
+        ],
+        "notes": "Authentication feature enhancement; categorized under authentication domain."
+      }
+    },
+    {
+      "id": "GH009",
+      "input": {
+        "title": "JWT token expiration error displays unformatted stack trace in auth header parser",
+        "body": "When an expired JWT token is supplied in the Authorization Bearer header, the API returns a 401 with a full Python ExpiredSignatureError stack trace in the response body instead of a clean JSON error response."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "low",
+        "summary": "Expired JWT tokens return unformatted exception tracebacks in the authentication response."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "authentication",
+          "jwt",
+          "error-handling"
+        ],
+        "notes": "Authentication error formatting issue; priority low since authentication rejection functions correctly."
+      }
+    },
+    {
+      "id": "GH010",
+      "input": {
+        "title": "API returns 401 Unauthorized for public webhook endpoint /api/v1/webhooks/stripe",
+        "body": "Incoming Stripe payment webhooks are failing because the global auth middleware intercepts /api/v1/webhooks/stripe and requires a user Bearer token. This prevents payment event processing."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "high",
+        "summary": "Public webhook endpoint incorrectly blocked by authentication middleware."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "authentication",
+          "webhook",
+          "middleware"
+        ],
+        "notes": "Ambiguous between backend and authentication; root cause is misconfigured authentication middleware excluding public routes."
+      }
+    },
+    {
+      "id": "GH011",
+      "input": {
+        "title": "Remember me checkbox state is ignored across browser restarts",
+        "body": "Checking 'Remember Me' during login should issue a persistent 30-day cookie, but users are prompted to log in again after closing and reopening the browser window because the cookie expiry is set to session-only."
+      },
+      "expected": {
+        "category": "authentication",
+        "priority": "medium",
+        "summary": "Remember me option fails to persist user authentication session across browser restarts."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "authentication",
+          "cookies",
+          "session"
+        ],
+        "notes": "Authentication persistence issue."
+      }
+    },
+    {
+      "id": "GH012",
+      "input": {
+        "title": "Navigation dropdown menu closes immediately on mouse hover in Safari",
+        "body": "On macOS Safari 17.2, moving the cursor over the 'Projects' dropdown menu causes it to flicker and close before any menu items can be clicked. Chrome and Firefox work as expected."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "medium",
+        "summary": "Projects navigation dropdown prematurely closes on hover in Safari browser."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "ui",
+          "frontend",
+          "safari",
+          "dropdown"
+        ],
+        "notes": "Classic browser-specific frontend UI hover bug."
+      }
+    },
+    {
+      "id": "GH013",
+      "input": {
+        "title": "Submit button on settings form lacks disabled state during pending API request",
+        "body": "When clicking 'Save Changes' on the user profile page, the button remains clickable without a spinner or disabled state, allowing users to rapidly click multiple times and submit duplicate PATCH requests."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "medium",
+        "summary": "Save button lacks a disabled loading state allowing multiple duplicate submissions."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "ui",
+          "forms",
+          "buttons",
+          "ux"
+        ],
+        "notes": "UI interaction and button state omission."
+      }
+    },
+    {
+      "id": "GH014",
+      "input": {
+        "title": "Modal dialog cannot be closed when screen resolution is below 1280x720",
+        "body": "On smaller laptop displays or when zooming in to 150%, the confirmation modal extends beyond the viewport. The 'X' close button and modal actions are offscreen and cannot be scrolled into view, trapping the user."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "high",
+        "summary": "Modal dialog exceeds screen viewport on lower resolutions blocking user interaction."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "ui",
+          "css",
+          "modal",
+          "responsive"
+        ],
+        "notes": "High priority UI layout bug that completely traps users in the interface."
+      }
+    },
+    {
+      "id": "GH015",
+      "input": {
+        "title": "Incorrect tooltip text on table column sort icon",
+        "body": "The table header sort button for 'Date Created' shows a tooltip saying 'Sort by Name' instead of 'Sort by Date'. The sorting functionality itself works correctly."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "low",
+        "summary": "Date column sort icon displays misleading tooltip label."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "ui",
+          "tooltip",
+          "accessibility"
+        ],
+        "notes": "Minor cosmetic UI text mismatch."
+      }
+    },
+    {
+      "id": "GH016",
+      "input": {
+        "title": "Dark mode theme causes unreadable dark gray text on black cards in billing tab",
+        "body": "In the billing history tab under dark mode, text elements with class '.text-muted' render as #333333 on #1a1a1a background cards, failing WCAG AA contrast ratios and making invoice details impossible to read."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "low",
+        "summary": "Dark mode styling creates unreadable contrast on billing history cards."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "ui",
+          "css",
+          "dark-mode",
+          "contrast"
+        ],
+        "notes": "Visual styling and CSS contrast issue."
+      }
+    },
+    {
+      "id": "GH017",
+      "input": {
+        "title": "Table pagination component breaks when total items exceed 10,000",
+        "body": "When querying audit logs with over 10,000 entries, the pagination numbers overflow outside the container boundary and overlap with the footer widget, obscuring the next page button."
+      },
+      "expected": {
+        "category": "ui",
+        "priority": "medium",
+        "summary": "Pagination component layout overflows its container when handling large item counts."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "ui",
+          "frontend",
+          "pagination",
+          "layout"
+        ],
+        "notes": "Ambiguous between performance and UI; root cause is frontend flexbox/overflow layout failure."
+      }
+    },
+    {
+      "id": "GH018",
+      "input": {
+        "title": "Database migration 004_add_tenant_id fails with column already exists in staging",
+        "body": "Running alembic upgrade head fails at revision 004_add_tenant_id with sqlalchemy.exc.OperationalError: duplicate column name: tenant_id. The migration script lacks IF NOT EXISTS guards."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "high",
+        "summary": "Database migration fails due to unhandled existing tenant column."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "database",
+          "migrations",
+          "alembic",
+          "schema"
+        ],
+        "notes": "Direct database schema migration script failure."
+      }
+    },
+    {
+      "id": "GH019",
+      "input": {
+        "title": "Connection pool exhaustion under concurrent API requests (OperationalError: max connections exceeded)",
+        "body": "During peak traffic hours, PostgreSQL rejects connections with 'FATAL: sorry, too many clients already'. The application connection pool is set to 50 with no recycling or connection timeout, causing orphaned connections."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "high",
+        "summary": "PostgreSQL connection pool exhaust causes database connection refusal during high traffic."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "database",
+          "connection-pool",
+          "postgresql"
+        ],
+        "notes": "Database infrastructure connection resource management failure."
+      }
+    },
+    {
+      "id": "GH020",
+      "input": {
+        "title": "Database deadlock detected during simultaneous order status and inventory updates",
+        "body": "Simultaneous execution of update_order_status and decrement_inventory triggers PostgreSQL deadlock errors: 'ERROR: deadlock detected; Process 4120 waits for ShareLock on transaction 8812; Process 4122 waits for ExclusiveLock'. Transactions must acquire locks in consistent order."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "high",
+        "summary": "Concurrent transaction lock order leads to database deadlocks on order updates."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "database",
+          "deadlock",
+          "transactions",
+          "locking"
+        ],
+        "notes": "Database transaction concurrency and locking problem."
+      }
+    },
+    {
+      "id": "GH021",
+      "input": {
+        "title": "Add composite index on (tenant_id, created_at) to audit_events table",
+        "body": "Queries filtering audit logs by tenant and ordering by timestamp are performing sequential scans across 5 million rows. Adding a composite index idx_audit_tenant_created will optimize query plan execution."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "medium",
+        "summary": "Request to create a composite database index to accelerate tenant audit log queries."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "database",
+          "indexing",
+          "sql",
+          "optimization"
+        ],
+        "notes": "Database indexing and query schema enhancement."
+      }
+    },
+    {
+      "id": "GH022",
+      "input": {
+        "title": "Foreign key constraint failure when cascading user account deletion",
+        "body": "Attempting to delete a user record via the admin portal fails with sqlite3.IntegrityError: FOREIGN KEY constraint failed on table user_sessions. The foreign key was declared without ON DELETE CASCADE."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "medium",
+        "summary": "User deletion fails due to missing ON DELETE CASCADE constraint on user sessions table."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "database",
+          "sqlite",
+          "foreign-key",
+          "schema"
+        ],
+        "notes": "Relational database schema constraint misconfiguration."
+      }
+    },
+    {
+      "id": "GH023",
+      "input": {
+        "title": "Database backup cron job leaves temporary .dump files in /var/lib/postgresql/tmp",
+        "body": "The nightly pg_dump backup script successfully uploads backups to S3, but fails to clean up uncompressed temporary dump files in the local tmp directory, consuming 50GB of disk space over time."
+      },
+      "expected": {
+        "category": "database",
+        "priority": "low",
+        "summary": "Nightly database backup script leaves orphaned temporary dump files consuming disk space."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "database",
+          "backup",
+          "maintenance",
+          "cron"
+        ],
+        "notes": "Database operational maintenance cleanup issue."
+      }
+    },
+    {
+      "id": "GH024",
+      "input": {
+        "title": "JSON serialization error when API returns datetime object with timezone offset",
+        "body": "Endpoint /api/v2/events crashes with TypeError: Object of type datetime is not JSON serializable when returning records with pytz timezone representations. Custom JSONEncoder is missing."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "high",
+        "summary": "Event API endpoint crashes with a JSON serialization error for datetime objects."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "backend",
+          "api",
+          "json",
+          "serialization"
+        ],
+        "notes": "Standard backend API serialization bug."
+      }
+    },
+    {
+      "id": "GH025",
+      "input": {
+        "title": "Background Celery worker memory leak during batch PDF invoice generation",
+        "body": "Workers processing the generate_pdf_invoices task do not release memory after completing tasks. Resident memory climbs by ~200MB per batch until the Linux OOM killer terminates the Celery process."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "high",
+        "summary": "Celery task worker leaks memory during PDF generation leading to process termination."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "backend",
+          "celery",
+          "workers",
+          "memory"
+        ],
+        "notes": "Backend asynchronous worker process failure."
+      }
+    },
+    {
+      "id": "GH026",
+      "input": {
+        "title": "POST /api/v1/webhooks/github fails to verify HMAC-SHA256 payload signature",
+        "body": "When receiving GitHub webhook events, the backend fails verification because it decodes request.body to utf-8 string before computing HMAC, mutating whitespace and CRLF line endings."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "medium",
+        "summary": "GitHub webhook signature verification fails due to string decoding before HMAC computation."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "backend",
+          "api",
+          "webhooks",
+          "crypto"
+        ],
+        "notes": "Backend API webhook verification bug."
+      }
+    },
+    {
+      "id": "GH027",
+      "input": {
+        "title": "Unhandled null value in middle_name causes AttributeError in user profile serializer",
+        "body": "When a user without a middle name updates their profile, the serializer executes middle_name.strip() without a None check, throwing AttributeError: 'NoneType' object has no attribute 'strip' and returning 500."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "medium",
+        "summary": "Null middle name attribute causes unhandled exception in profile serializer."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "backend",
+          "validation",
+          "serializer"
+        ],
+        "notes": "Backend data validation edge case."
+      }
+    },
+    {
+      "id": "GH028",
+      "input": {
+        "title": "REST API returns HTTP 200 with error payload instead of proper HTTP 404 for missing resource",
+        "body": "Requesting GET /api/v1/orders/999999 for a non-existent order ID returns status 200 OK with body {'status': 'error', 'message': 'Order not found'}. This violates REST API contract conventions."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "low",
+        "summary": "Orders endpoint incorrectly returns HTTP 200 for missing resources instead of HTTP 404."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "backend",
+          "api",
+          "rest",
+          "http-status"
+        ],
+        "notes": "Backend REST API status code contract deviation."
+      }
+    },
+    {
+      "id": "GH029",
+      "input": {
+        "title": "Intermittent socket hangup during third-party payment gateway TLS handshake",
+        "body": "Approximately 2% of calls to the payment gateway service fail with requests.exceptions.SSLError: HTTPSConnectionPool(host='api.paygate.io'): Read timed out. Retrying with exponential backoff is not implemented."
+      },
+      "expected": {
+        "category": "backend",
+        "priority": "medium",
+        "summary": "Intermittent payment gateway TLS timeouts fail due to missing retry mechanism."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "backend",
+          "network",
+          "integration",
+          "timeout"
+        ],
+        "notes": "Ambiguous between integration and backend; expected category is backend network client error handling."
+      }
+    },
+    {
+      "id": "GH030",
+      "input": {
+        "title": "High CPU utilization and latency spikes caused by unindexed N+1 query in organization member list",
+        "body": "Loading the organization members page generates 1 query for the organization followed by 500 individual queries for each member profile. Endpoint response time degraded from 120ms to 4.8s."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "high",
+        "summary": "N+1 query pattern causes severe CPU spikes and slow response times on organization members endpoint."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "performance",
+          "latency",
+          "n+1-query",
+          "orm"
+        ],
+        "notes": "Performance degradation caused by ORM query pattern."
+      }
+    },
+    {
+      "id": "GH031",
+      "input": {
+        "title": "Memory usage grows unboundedly when exporting large CSV datasets",
+        "body": "The export_reports function loads the entire 200,000-row result set into an in-memory list before streaming. The server runs out of memory and crashes when multiple users export reports concurrently."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "high",
+        "summary": "Full dataset buffering in memory during CSV exports causes out-of-memory crashes."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "performance",
+          "memory",
+          "streaming",
+          "export"
+        ],
+        "notes": "Memory exhaustion performance issue."
+      }
+    },
+    {
+      "id": "GH032",
+      "input": {
+        "title": "Regex catastrophic backtracking in email validation utility freezes event loop",
+        "body": "The regex pattern ^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$ causes polynomial backtracking when given a string with 50 consecutive dots, freezing the asyncio event loop for 15 seconds."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "medium",
+        "summary": "Catastrophic regex backtracking in email validator causes asyncio event loop freezing."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "performance",
+          "regex",
+          "event-loop",
+          "cpu"
+        ],
+        "notes": "Subtle performance vulnerability due to regular expression engine backtracking."
+      }
+    },
+    {
+      "id": "GH033",
+      "input": {
+        "title": "Implement Redis caching for static product category hierarchy",
+        "body": "The product category tree is fetched on every homepage visit from PostgreSQL (400 QPS) even though categories change once a week. Adding a 1-hour Redis cache layer will reduce database read load by 85%."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "medium",
+        "summary": "Proposes Redis caching for product categories to reduce repeated database read queries."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "performance",
+          "caching",
+          "redis",
+          "optimization"
+        ],
+        "notes": "Performance optimization proposal."
+      }
+    },
+    {
+      "id": "GH034",
+      "input": {
+        "title": "Static asset bundle sizes are unminified in production build (bundle.js is 8.4MB)",
+        "body": "Production Webpack build config is omitting TerserPlugin minification and Gzip compression. Initial page download payload is 8.4MB, resulting in a 4.2-second First Contentful Paint on mobile networks."
+      },
+      "expected": {
+        "category": "performance",
+        "priority": "low",
+        "summary": "Unminified production frontend assets degrade page load times and initial rendering metrics."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "performance",
+          "webpack",
+          "assets",
+          "frontend"
+        ],
+        "notes": "Build asset optimization for load performance."
+      }
+    },
+    {
+      "id": "GH035",
+      "input": {
+        "title": "Broken hyperlinks in API reference for webhook payload schemas",
+        "body": "In docs/api/webhooks.md, the link pointing to the 'SubscriptionCreated' schema payload returns a 404 Not Found error because the anchor tag was renamed in the last release."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "low",
+        "summary": "Broken hyperlinks in webhook API documentation point to renamed payload anchor tags."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "documentation",
+          "links",
+          "api-docs"
+        ],
+        "notes": "Standard documentation link fix."
+      }
+    },
+    {
+      "id": "GH036",
+      "input": {
+        "title": "Quickstart tutorial code snippet fails with syntax error on Python 3.12",
+        "body": "The code sample in docs/quickstart.md uses asyncio.get_event_loop().run_until_complete() without prior loop initialization, which raises RuntimeError: There is no current event loop in Python 3.12."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "medium",
+        "summary": "Quickstart tutorial example code contains syntax and runtime errors on Python 3.12."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "documentation",
+          "tutorial",
+          "code-snippet",
+          "python3.12"
+        ],
+        "notes": "Documentation code snippet incompatibility."
+      }
+    },
+    {
+      "id": "GH037",
+      "input": {
+        "title": "Document required environment variables for production Kubernetes deployment",
+        "body": "The deployment guide does not specify which environment variables are required versus optional. Operators deploying the Helm chart have had pods crashloop due to missing REDIS_URL and SECRET_KEY."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "high",
+        "summary": "Production deployment guide lacks required environment variable specifications for Kubernetes."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "documentation",
+          "kubernetes",
+          "deployment",
+          "env-vars"
+        ],
+        "notes": "Critical deployment documentation gap that blocks production rollouts."
+      }
+    },
+    {
+      "id": "GH038",
+      "input": {
+        "title": "Swagger OpenAPI schema documents deprecated /v1/auth/login parameters",
+        "body": "The generated Swagger UI specification lists 'username' as a required field for /v1/auth/login, but the endpoint was refactored to require 'email'. Users testing via Swagger fail with validation errors."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "medium",
+        "summary": "Swagger API specification lists outdated parameters for the authentication endpoint."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "documentation",
+          "swagger",
+          "openapi",
+          "api"
+        ],
+        "notes": "Ambiguous between API bug and docs; Swagger is API documentation documentation artifact."
+      }
+    },
+    {
+      "id": "GH039",
+      "input": {
+        "title": "Fix typos in contributing guidelines and code of conduct",
+        "body": "Several spelling mistakes found in CONTRIBUTING.md, including 'enviroment' on line 42 and 'depencency' on line 88."
+      },
+      "expected": {
+        "category": "documentation",
+        "priority": "low",
+        "summary": "Minor spelling and typo corrections in contribution documentation."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "documentation",
+          "typo",
+          "contributing"
+        ],
+        "notes": "Trivial documentation typo corrections."
+      }
+    },
+    {
+      "id": "GH040",
+      "input": {
+        "title": "Export evaluation metrics and case history to CSV and Parquet",
+        "body": "It would be extremely helpful for our data science team if the evaluation results view provided an 'Export to CSV' and 'Export to Parquet' button so we can conduct offline regression analysis in pandas."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "medium",
+        "summary": "Add CSV and Parquet export capabilities for evaluation metrics and case results."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "feature-request",
+          "export",
+          "analytics",
+          "csv"
+        ],
+        "notes": "Clear feature request for export options."
+      }
+    },
+    {
+      "id": "GH041",
+      "input": {
+        "title": "Slack webhook notifications on critical regression detection in CI pipeline",
+        "body": "We would like the check_regression script to support sending an alert to a configured Slack incoming webhook URL whenever regression severity is CRITICAL."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "medium",
+        "summary": "Request for Slack webhook alerts when critical regressions are detected in CI."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "feature-request",
+          "slack",
+          "notifications",
+          "ci"
+        ],
+        "notes": "Feature enhancement for alerting."
+      }
+    },
+    {
+      "id": "GH042",
+      "input": {
+        "title": "Support custom system prompts per model family in evaluation configuration",
+        "body": "Different LLMs respond better to specific prompt formatting (e.g. Llama models prefer system instructions formatted differently than Gemma). We need the ability to define model-specific prompt overrides."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "low",
+        "summary": "Support per-model system prompt overrides in the configuration schema."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "feature-request",
+          "prompt",
+          "configuration",
+          "models"
+        ],
+        "notes": "Subtle feature request framed around model performance discrepancies."
+      }
+    },
+    {
+      "id": "GH043",
+      "input": {
+        "title": "Add filtering and search bar in dashboard case explorer table",
+        "body": "When viewing runs with hundreds of test cases, scrolling through all rows is tedious. Adding a text search input for issue title and a multi-select filter for pass/fail status would improve usability."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "low",
+        "summary": "Request for search and status filters in the dashboard case explorer table."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "feature-request",
+          "dashboard",
+          "search",
+          "filters"
+        ],
+        "notes": "UI usability feature request."
+      }
+    },
+    {
+      "id": "GH044",
+      "input": {
+        "title": "Automated golden dataset generation from production issue triage logs",
+        "body": "Provide a CLI command to ingest resolved GitHub issues from a repository and automatically draft candidate golden dataset cases with human approval checkpoints."
+      },
+      "expected": {
+        "category": "feature-request",
+        "priority": "low",
+        "summary": "Add automated dataset case drafting from resolved repository issues."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "feature-request",
+          "cli",
+          "automation",
+          "datasets"
+        ],
+        "notes": "Advanced feature request for dataset generation."
+      }
+    },
+    {
+      "id": "GH045",
+      "input": {
+        "title": "App crashes with UnboundLocalError when processing issue without tags",
+        "body": "In runner.py line 298, the variable 'tag_results' is referenced before assignment when the dataset case has metadata.tags set to null instead of an empty list, causing the entire evaluation run to abort."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "high",
+        "summary": "Evaluation runner crashes with UnboundLocalError when processing cases with null tags."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "bug",
+          "crash",
+          "python",
+          "runner"
+        ],
+        "notes": "Direct code bug causing runtime crash."
+      }
+    },
+    {
+      "id": "GH046",
+      "input": {
+        "title": "Regression detector calculates incorrect macro average when target class has zero support",
+        "body": "When a target category has zero occurrences in the golden dataset, the per-class division produces NaN or 0.0 without proper exclusion from the macro denominator, throwing ZeroDivisionError."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "high",
+        "summary": "Regression detector crashes with ZeroDivisionError when encountering classes with zero support."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "bug",
+          "math",
+          "metrics",
+          "regression"
+        ],
+        "notes": "Calculation logic bug in metric computation."
+      }
+    },
+    {
+      "id": "GH047",
+      "input": {
+        "title": "Date filter in evaluation history returns records outside selected date range",
+        "body": "Selecting date range 2026-08-01 to 2026-08-15 in the UI date picker still includes evaluation runs from 2026-07-21. The SQL query uses '>' instead of '>=' and misses timezone offset conversions."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "medium",
+        "summary": "Evaluation date range filtering includes records outside the selected boundary."
+      },
+      "metadata": {
+        "difficulty": "medium",
+        "tags": [
+          "bug",
+          "filtering",
+          "sql",
+          "dashboard"
+        ],
+        "notes": "Data filtering bug."
+      }
+    },
+    {
+      "id": "GH048",
+      "input": {
+        "title": "Markdown bold syntax not rendered properly inside HTML report summary table",
+        "body": "In the HTML report, notes containing **bold text** are rendered as literal asterisks rather than <strong> tags because the template outputs text with raw escaping without markdown parsing."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "low",
+        "summary": "Markdown bold formatting renders as literal asterisks in HTML reports."
+      },
+      "metadata": {
+        "difficulty": "easy",
+        "tags": [
+          "bug",
+          "html-report",
+          "markdown",
+          "rendering"
+        ],
+        "notes": "Minor rendering bug."
+      }
+    },
+    {
+      "id": "GH049",
+      "input": {
+        "title": "CLI check_regression.py returns exit code 0 when database file is completely missing",
+        "body": "Running scripts/check_regression.py against a non-existent database path silently initializes a new empty database, finds 0 runs, prints 'No runs found', and exits with return code 0 instead of 2."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "medium",
+        "summary": "Regression CLI incorrectly exits with success code 0 when target database does not exist."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "bug",
+          "cli",
+          "exit-codes",
+          "error-handling"
+        ],
+        "notes": "Silent failure bug in CI gate CLI logic."
+      }
+    },
+    {
+      "id": "GH050",
+      "input": {
+        "title": "Race condition in SQLite connection pool causes database locked error under async execution",
+        "body": "When running concurrent evaluations across multiple worker processes, SQLite throws 'sqlite3.OperationalError: database is locked'. Connection timeout is set to 0.0 instead of using busy_timeout or WAL mode."
+      },
+      "expected": {
+        "category": "bug",
+        "priority": "high",
+        "summary": "Concurrent evaluations fail with database locked errors due to missing SQLite busy timeout."
+      },
+      "metadata": {
+        "difficulty": "hard",
+        "tags": [
+          "bug",
+          "concurrency",
+          "sqlite",
+          "locking"
+        ],
+        "notes": "Ambiguous between database and bug; root cause is defective connection concurrency handling in application code."
+      }
+    }
+  ]
+}
