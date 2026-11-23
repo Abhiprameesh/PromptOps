@@ -24,4 +24,11 @@ def parse_llm_response(raw_response: str) -> IssueClassification:
 
     data = json.loads(cleaned)
 
+    # Normalize category and priority strings using whitespace trimming and lowercasing
+    if isinstance(data, dict):
+        if "category" in data and isinstance(data["category"], str):
+            data["category"] = data["category"].strip().lower()
+        if "priority" in data and isinstance(data["priority"], str):
+            data["priority"] = data["priority"].strip().lower()
+
     return IssueClassification(**data)

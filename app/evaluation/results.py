@@ -16,6 +16,7 @@ class CaseResult(BaseModel):
     predicted_priority: Optional[str] = None
     category_passed: Optional[bool] = None
     priority_passed: Optional[bool] = None
+    summary_valid: Optional[bool] = None
     latency_ms: Optional[float] = None
     raw_response: Optional[str] = None
 
@@ -34,3 +35,6 @@ class EvaluationResult(BaseModel):
     composite_accuracy: Optional[float] = None
     avg_latency_ms: Optional[float] = None
     difficulty_breakdown: Optional[Dict[str, Any]] = None
+    tag_breakdown: Optional[Dict[str, Any]] = None
+    category_metrics: Optional[Dict[str, Any]] = None
+    priority_metrics: Optional[Dict[str, Any]] = None
