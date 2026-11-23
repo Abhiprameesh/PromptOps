@@ -1,0 +1,218 @@
+{
+  "benchmark_version": "v2",
+  "created_at": "2026-11-23T16:05:35.351532",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "machine": "AMD64",
+    "python_version": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+    "ollama_version": "ollama version is 0.40.17"
+  },
+  "dataset": {
+    "path": "datasets\\v2\\github_issues.json",
+    "sha256": "d22f8f0ea3f04574a175a860f0672e10a42dc9e01a0462d467c1b80f02456add"
+  },
+  "prompt": {
+    "path": "prompt\\v1.yaml",
+    "sha256": "4a11bade4192f56583cb7bd3ad4b9cefc7c63d9f37f528ffdfd6a754355e3f58"
+  },
+  "models": [
+    "gemma3:4b",
+    "mistral:latest",
+    "llama3:latest"
+  ],
+  "target_database": "data\\validation.db",
+  "repetitions_planned": 3,
+  "runs": {
+    "gemma3_4b_rep_1": {
+      "model": "gemma3:4b",
+      "repetition": 1,
+      "run_id": 10,
+      "status": "completed",
+      "started_at": "2026-11-23T16:05:59.122305",
+      "completed_at": "2026-11-23T16:13:05.059680",
+      "duration_sec": 425.9,
+      "accuracy": 32.0,
+      "category_accuracy": 48.0,
+      "priority_accuracy": 52.0,
+      "composite_accuracy": 32.0,
+      "avg_latency_ms": 222072.09,
+      "category_macro_f1": 0.4357,
+      "priority_macro_f1": 0.4505,
+      "stats": {
+        "latency": {
+          "avg_ms": 222072.09,
+          "median_ms": 226066.36,
+          "min_ms": 8594.25,
+          "max_ms": 425658.58,
+          "variance": 16114232928.61,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "gemma3_4b_rep_2": {
+      "model": "gemma3:4b",
+      "repetition": 2,
+      "run_id": 11,
+      "status": "completed",
+      "started_at": "2026-11-23T16:13:15.065687",
+      "completed_at": "2026-11-23T16:19:37.766747",
+      "duration_sec": 382.67,
+      "accuracy": 32.0,
+      "category_accuracy": 48.0,
+      "priority_accuracy": 52.0,
+      "composite_accuracy": 32.0,
+      "avg_latency_ms": 193060.71,
+      "category_macro_f1": 0.4357,
+      "priority_macro_f1": 0.4505,
+      "stats": {
+        "latency": {
+          "avg_ms": 193060.71,
+          "median_ms": 192782.65,
+          "min_ms": 6134.78,
+          "max_ms": 382653.01,
+          "variance": 12781856358.79,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "gemma3_4b_rep_3": {
+      "model": "gemma3:4b",
+      "repetition": 3,
+      "run_id": 12,
+      "status": "completed",
+      "started_at": "2026-11-23T16:19:47.774511",
+      "completed_at": "2026-11-23T16:26:09.295928",
+      "duration_sec": 381.5,
+      "accuracy": 32.0,
+      "category_accuracy": 48.0,
+      "priority_accuracy": 52.0,
+      "composite_accuracy": 32.0,
+      "avg_latency_ms": 192324.07,
+      "category_macro_f1": 0.4357,
+      "priority_macro_f1": 0.4505,
+      "stats": {
+        "latency": {
+          "avg_ms": 192324.07,
+          "median_ms": 191825.0,
+          "min_ms": 6215.06,
+          "max_ms": 381482.82,
+          "variance": 12708798007.83,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "mistral_latest_rep_1": {
+      "model": "mistral:latest",
+      "repetition": 1,
+      "run_id": 13,
+      "status": "completed",
+      "started_at": "2026-11-23T18:01:04.356128",
+      "completed_at": "2026-11-23T18:08:20.827107",
+      "duration_sec": 436.44,
+      "accuracy": 24.0,
+      "category_accuracy": 70.0,
+      "priority_accuracy": 38.0,
+      "composite_accuracy": 24.0,
+      "avg_latency_ms": 218120.44,
+      "category_macro_f1": 0.6894,
+      "priority_macro_f1": 0.2153,
+      "stats": {
+        "latency": {
+          "avg_ms": 218120.44,
+          "median_ms": 214787.46,
+          "min_ms": 8700.98,
+          "max_ms": 436428.3,
+          "variance": 16921580854.28,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "mistral_latest_rep_2": {
+      "model": "mistral:latest",
+      "repetition": 2,
+      "run_id": 14,
+      "status": "completed",
+      "started_at": "2026-11-23T18:08:30.835218",
+      "completed_at": "2026-11-23T18:15:50.980434",
+      "duration_sec": 440.12,
+      "accuracy": 24.0,
+      "category_accuracy": 70.0,
+      "priority_accuracy": 38.0,
+      "composite_accuracy": 24.0,
+      "avg_latency_ms": 220938.91,
+      "category_macro_f1": 0.6894,
+      "priority_macro_f1": 0.2153,
+      "stats": {
+        "latency": {
+          "avg_ms": 220938.91,
+          "median_ms": 218742.44,
+          "min_ms": 6547.5,
+          "max_ms": 440098.27,
+          "variance": 17197507272.7,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "mistral_latest_rep_3": {
+      "model": "mistral:latest",
+      "repetition": 3,
+      "status": "in_progress",
+      "started_at": "2026-11-23T18:16:00.988040"
+    }
+  },
+  "warmups": {
+    "gemma3_4b_warmup": {
+      "model": "gemma3:4b",
+      "timestamp": "2026-11-23T16:05:59.117439",
+      "latency_ms": 21727.36,
+      "parsed_successfully": true
+    },
+    "mistral_latest_warmup": {
+      "model": "mistral:latest",
+      "timestamp": "2026-11-23T18:01:04.353681",
+      "latency_ms": 25778.27,
+      "parsed_successfully": true
+    }
+  }
+}
