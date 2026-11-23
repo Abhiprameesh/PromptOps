@@ -1,11 +1,32 @@
+import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
-from typing import Optional, Union
+from typing import Any, Optional, Union
 
 from app.evaluation.results import EvaluationResult
 
 DB_PATH = Path("data/evaluation.db")
+
+
+def _dump_json(val: Optional[Any]) -> Optional[str]:
+    """Serialize Python dictionary or collection to JSON string safely."""
+    if val is None:
+        return None
+    try:
+        return json.dumps(val)
+    except Exception:
+        return None
+
+
+def _load_json(val: Optional[str]) -> Optional[Any]:
+    """Deserialize JSON string to Python object safely."""
+    if val is None:
+        return None
+    try:
+        return json.loads(val)
+    except Exception:
+        return None
 
 
 class Database:
@@ -70,6 +91,7 @@ class Database:
             "predicted_priority": "TEXT",
             "category_passed": "INTEGER",
             "priority_passed": "INTEGER",
+            "summary_valid": "INTEGER",
             "latency_ms": "REAL",
             "raw_response": "TEXT",
         }
@@ -80,6 +102,10 @@ class Database:
             "priority_accuracy": "REAL",
             "composite_accuracy": "REAL",
             "avg_latency_ms": "REAL",
+            "category_metrics": "TEXT",
+            "priority_metrics": "TEXT",
+            "difficulty_breakdown": "TEXT",
+            "tag_breakdown": "TEXT",
         }
 
         self._add_missing_columns("case_results", case_results_columns)
@@ -107,8 +133,8 @@ class Database:
         model: str,
     ) -> int:
         """
-        Saves an evaluation run and its case results using explicit column names
-        and atomic transaction handling.
+        Saves an evaluation run and its case results using explicit column names,
+        JSON serialization for analytical metrics, and atomic transaction handling.
         """
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -126,9 +152,13 @@ class Database:
                     category_accuracy,
                     priority_accuracy,
                     composite_accuracy,
-                    avg_latency_ms
+                    avg_latency_ms,
+                    category_metrics,
+                    priority_metrics,
+                    difficulty_breakdown,
+                    tag_breakdown
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     timestamp,
@@ -142,6 +172,10 @@ class Database:
                     result.priority_accuracy,
                     result.composite_accuracy,
                     result.avg_latency_ms,
+                    _dump_json(result.category_metrics),
+                    _dump_json(result.priority_metrics),
+                    _dump_json(result.difficulty_breakdown),
+                    _dump_json(result.tag_breakdown),
                 ),
             )
 
@@ -161,10 +195,11 @@ class Database:
                         predicted_priority,
                         category_passed,
                         priority_passed,
+                        summary_valid,
                         latency_ms,
                         raw_response
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         run_id,
@@ -180,6 +215,9 @@ class Database:
                         else None,
                         int(case.priority_passed)
                         if case.priority_passed is not None
+                        else None,
+                        int(case.summary_valid)
+                        if getattr(case, "summary_valid", None) is not None
                         else None,
                         case.latency_ms,
                         case.raw_response,
@@ -303,7 +341,7 @@ class Database:
         return self.cursor.fetchall()
 
     # ---------------------------------------------------------
-    # V2 Extended Query Methods (Non-breaking Additions)
+    # V2 Extended Query Methods (Safely Deserialized)
     # ---------------------------------------------------------
 
     def get_extended_run_by_id(self, run_id):
@@ -320,11 +358,25 @@ class Database:
                 category_accuracy,
                 priority_accuracy,
                 composite_accuracy,
-                avg_latency_ms
+                avg_latency_ms,
+                category_metrics,
+                priority_metrics,
+                difficulty_breakdown,
+                tag_breakdown
             FROM evaluation_runs
             WHERE run_id = ?
         """, (run_id,))
-        return self.cursor.fetchone()
+        row = self.cursor.fetchone()
+        if row is None:
+            return None
+
+        # Safely deserialize JSON fields into Python objects
+        row_list = list(row)
+        row_list[12] = _load_json(row_list[12])  # category_metrics
+        row_list[13] = _load_json(row_list[13])  # priority_metrics
+        row_list[14] = _load_json(row_list[14])  # difficulty_breakdown
+        row_list[15] = _load_json(row_list[15])  # tag_breakdown
+        return tuple(row_list)
 
     def get_extended_case_results(self, run_id):
         self.cursor.execute("""
@@ -338,6 +390,7 @@ class Database:
                 predicted_priority,
                 category_passed,
                 priority_passed,
+                summary_valid,
                 latency_ms,
                 raw_response
             FROM case_results

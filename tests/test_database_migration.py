@@ -49,6 +49,10 @@ class TestDatabaseMigrationV2(unittest.TestCase):
                 "priority_accuracy",
                 "composite_accuracy",
                 "avg_latency_ms",
+                "category_metrics",
+                "priority_metrics",
+                "difficulty_breakdown",
+                "tag_breakdown",
             ]:
                 self.assertIn(expected_col, eval_cols)
 
@@ -60,6 +64,7 @@ class TestDatabaseMigrationV2(unittest.TestCase):
                 "predicted_priority",
                 "category_passed",
                 "priority_passed",
+                "summary_valid",
                 "latency_ms",
                 "raw_response",
             ]:
@@ -141,56 +146,117 @@ class TestDatabaseMigrationV2(unittest.TestCase):
             saved_legacy = db.get_run_by_id(legacy_run_id)
             self.assertEqual(saved_legacy[7], 100.0)
 
-            # Extended query should show NULL for V2 fields
+            # Extended query should show NULL for all V2 fields and deserialized None
             extended_legacy = db.get_extended_run_by_id(legacy_run_id)
-            self.assertIsNone(extended_legacy[8])  # category_accuracy is None
+            self.assertIsNone(extended_legacy[8])   # category_accuracy
+            self.assertIsNone(extended_legacy[12])  # category_metrics
+            self.assertIsNone(extended_legacy[13])  # priority_metrics
+            self.assertIsNone(extended_legacy[14])  # difficulty_breakdown
+            self.assertIsNone(extended_legacy[15])  # tag_breakdown
 
             extended_legacy_case = db.get_extended_case_results(legacy_run_id)[0]
             self.assertIsNone(extended_legacy_case[7])  # category_passed is None
             self.assertIsNone(extended_legacy_case[8])  # priority_passed is None
+            self.assertIsNone(extended_legacy_case[9])  # summary_valid is None
 
-            # 2. Save run with full V2 fields populated
-            v2_case = CaseResult(
-                case_id="GH_V2",
+            # 2. Save run with full V2 fields populated (including JSON analytics & summary_valid)
+            case_valid = CaseResult(
+                case_id="GH_V2_1",
                 expected_category="bug",
                 predicted_category="bug",
                 passed=True,
                 expected_priority="high",
                 predicted_priority="high",
                 category_passed=True,
-                priority_passed=False,
+                priority_passed=True,
+                summary_valid=True,  # Should persist as 1
                 latency_ms=85.4,
-                raw_response='{"category": "bug", "priority": "high"}',
+                raw_response='{"category": "bug", "priority": "high", "summary": "Valid summary"}',
             )
+            case_invalid_summary = CaseResult(
+                case_id="GH_V2_2",
+                expected_category="ui",
+                predicted_category="ui",
+                passed=False,
+                expected_priority="medium",
+                predicted_priority="medium",
+                category_passed=True,
+                priority_passed=True,
+                summary_valid=False,  # Should persist as 0
+                latency_ms=45.2,
+                raw_response='{"category": "ui", "priority": "medium", "summary": ""}',
+            )
+            case_none_summary = CaseResult(
+                case_id="GH_V2_3",
+                expected_category="backend",
+                predicted_category=None,
+                passed=False,
+                error="Timeout error",
+                summary_valid=None,  # Should persist as NULL
+                latency_ms=10.0,
+            )
+
+            sample_cat_metrics = {
+                "accuracy": 66.7,
+                "per_class": {"bug": {"precision": 1.0, "recall": 1.0, "f1": 1.0}},
+            }
+            sample_pri_metrics = {
+                "accuracy": 66.7,
+                "per_class": {"high": {"precision": 1.0, "recall": 1.0, "f1": 1.0}},
+            }
+            sample_diff_breakdown = {"easy": 100.0, "hard": 50.0}
+            sample_tag_breakdown = {"auth": 100.0, "ui": 0.0}
+
             v2_eval = EvaluationResult(
-                total_cases=1,
+                total_cases=3,
                 passed_cases=1,
-                failed_cases=0,
-                accuracy=100.0,
-                case_results=[v2_case],
-                category_accuracy=100.0,
-                priority_accuracy=0.0,
-                composite_accuracy=0.0,
-                avg_latency_ms=85.4,
-                difficulty_breakdown={"easy": 100.0},
+                failed_cases=2,
+                accuracy=33.3,
+                case_results=[case_valid, case_invalid_summary, case_none_summary],
+                category_accuracy=66.7,
+                priority_accuracy=66.7,
+                composite_accuracy=33.3,
+                avg_latency_ms=46.87,
+                difficulty_breakdown=sample_diff_breakdown,
+                tag_breakdown=sample_tag_breakdown,
+                category_metrics=sample_cat_metrics,
+                priority_metrics=sample_pri_metrics,
             )
             v2_run_id = db.save_run(v2_eval, "v2", "test-model-v2")
 
             extended_v2 = db.get_extended_run_by_id(v2_run_id)
-            self.assertEqual(extended_v2[8], 100.0)  # category_accuracy
-            self.assertEqual(extended_v2[9], 0.0)  # priority_accuracy
-            self.assertEqual(extended_v2[10], 0.0)  # composite_accuracy
-            self.assertEqual(extended_v2[11], 85.4)  # avg_latency_ms
+            self.assertEqual(extended_v2[8], 66.7)   # category_accuracy
+            self.assertEqual(extended_v2[9], 66.7)   # priority_accuracy
+            self.assertEqual(extended_v2[10], 33.3)  # composite_accuracy
+            self.assertEqual(extended_v2[11], 46.87) # avg_latency_ms
 
-            extended_case = db.get_extended_case_results(v2_run_id)[0]
-            self.assertEqual(extended_case[5], "high")  # expected_priority
-            self.assertEqual(extended_case[6], "high")  # predicted_priority
-            self.assertEqual(extended_case[7], 1)  # category_passed (True -> 1)
-            self.assertEqual(extended_case[8], 0)  # priority_passed (False -> 0)
-            self.assertEqual(extended_case[9], 85.4)  # latency_ms
-            self.assertEqual(
-                extended_case[10], '{"category": "bug", "priority": "high"}'
-            )
+            # Test JSON deserialization into native dictionaries
+            self.assertEqual(extended_v2[12]["accuracy"], 66.7)
+            self.assertEqual(extended_v2[12]["per_class"]["bug"]["f1"], 1.0)
+            self.assertEqual(extended_v2[13]["accuracy"], 66.7)
+            self.assertEqual(extended_v2[14]["easy"], 100.0)
+            self.assertEqual(extended_v2[14]["hard"], 50.0)
+            self.assertEqual(extended_v2[15]["auth"], 100.0)
+            self.assertEqual(extended_v2[15]["ui"], 0.0)
+
+            # Test case_results retrieval and summary_valid values (1, 0, NULL)
+            extended_cases = db.get_extended_case_results(v2_run_id)
+            self.assertEqual(len(extended_cases), 3)
+
+            # Case 1: summary_valid = True -> 1
+            self.assertEqual(extended_cases[0][0], "GH_V2_1")
+            self.assertEqual(extended_cases[0][7], 1)   # category_passed
+            self.assertEqual(extended_cases[0][8], 1)   # priority_passed
+            self.assertEqual(extended_cases[0][9], 1)   # summary_valid
+            self.assertEqual(extended_cases[0][10], 85.4)
+
+            # Case 2: summary_valid = False -> 0
+            self.assertEqual(extended_cases[1][0], "GH_V2_2")
+            self.assertEqual(extended_cases[1][9], 0)   # summary_valid
+
+            # Case 3: summary_valid = None -> None (NULL)
+            self.assertEqual(extended_cases[2][0], "GH_V2_3")
+            self.assertIsNone(extended_cases[2][9])     # summary_valid
 
 
 if __name__ == "__main__":
