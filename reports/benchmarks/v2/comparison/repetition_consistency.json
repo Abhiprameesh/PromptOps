@@ -1,0 +1,134 @@
+{
+  "gemma3:4b": {
+    "consistency": {
+      "identical_predictions_across_repetitions": true,
+      "inconsistent_case_count": 0,
+      "inconsistent_case_ids": [],
+      "accuracy_std_across_reps": 0.0,
+      "mean_latency_std_across_reps": 16966.38
+    },
+    "repetitions": {
+      "rep_1": {
+        "run_id": 10,
+        "accuracy": 32.0,
+        "mean_ms": 222072.09,
+        "median_ms": 226066.36,
+        "p95_ms": 413897.85,
+        "min_ms": 8594.25,
+        "max_ms": 425658.58,
+        "std_ms": 126941.85,
+        "variance_ms": 16114232928.61
+      },
+      "rep_2": {
+        "run_id": 11,
+        "accuracy": 32.0,
+        "mean_ms": 193060.71,
+        "median_ms": 192782.65,
+        "p95_ms": 371044.13,
+        "min_ms": 6134.78,
+        "max_ms": 382653.01,
+        "std_ms": 113056.87,
+        "variance_ms": 12781856358.79
+      },
+      "rep_3": {
+        "run_id": 12,
+        "accuracy": 32.0,
+        "mean_ms": 192324.07,
+        "median_ms": 191825.0,
+        "p95_ms": 369721.07,
+        "min_ms": 6215.06,
+        "max_ms": 381482.82,
+        "std_ms": 112733.3,
+        "variance_ms": 12708798007.83
+      }
+    }
+  },
+  "mistral:latest": {
+    "consistency": {
+      "identical_predictions_across_repetitions": true,
+      "inconsistent_case_count": 0,
+      "inconsistent_case_ids": [],
+      "accuracy_std_across_reps": 0.0,
+      "mean_latency_std_across_reps": 74905.28
+    },
+    "repetitions": {
+      "rep_1": {
+        "run_id": 13,
+        "accuracy": 24.0,
+        "mean_ms": 218120.44,
+        "median_ms": 214787.46,
+        "p95_ms": 421606.85,
+        "min_ms": 8700.98,
+        "max_ms": 436428.3,
+        "std_ms": 130082.98,
+        "variance_ms": 16921580854.28
+      },
+      "rep_2": {
+        "run_id": 14,
+        "accuracy": 24.0,
+        "mean_ms": 220938.91,
+        "median_ms": 218742.44,
+        "p95_ms": 425070.92,
+        "min_ms": 6547.5,
+        "max_ms": 440098.27,
+        "std_ms": 131139.27,
+        "variance_ms": 17197507272.7
+      },
+      "rep_3": {
+        "run_id": 15,
+        "accuracy": 24.0,
+        "mean_ms": 349246.47,
+        "median_ms": 341996.45,
+        "p95_ms": 624117.11,
+        "min_ms": 58920.27,
+        "max_ms": 642109.43,
+        "std_ms": 178734.47,
+        "variance_ms": 31946009956.52
+      }
+    }
+  },
+  "llama3:latest": {
+    "consistency": {
+      "identical_predictions_across_repetitions": true,
+      "inconsistent_case_count": 0,
+      "inconsistent_case_ids": [],
+      "accuracy_std_across_reps": 0.0,
+      "mean_latency_std_across_reps": 14132.78
+    },
+    "repetitions": {
+      "rep_1": {
+        "run_id": 16,
+        "accuracy": 26.0,
+        "mean_ms": 211337.77,
+        "median_ms": 208350.87,
+        "p95_ms": 411261.81,
+        "min_ms": 5595.73,
+        "max_ms": 428630.31,
+        "std_ms": 126261.21,
+        "variance_ms": 15941893127.64
+      },
+      "rep_2": {
+        "run_id": 17,
+        "accuracy": 26.0,
+        "mean_ms": 236700.2,
+        "median_ms": 233348.13,
+        "p95_ms": 443135.39,
+        "min_ms": 9690.5,
+        "max_ms": 456360.24,
+        "std_ms": 134335.43,
+        "variance_ms": 18046008289.35
+      },
+      "rep_3": {
+        "run_id": 18,
+        "accuracy": 26.0,
+        "mean_ms": 213213.1,
+        "median_ms": 213613.86,
+        "p95_ms": 410773.73,
+        "min_ms": 6383.6,
+        "max_ms": 424132.49,
+        "std_ms": 127999.15,
+        "variance_ms": 16383781624.59
+      }
+    }
+  }
+}

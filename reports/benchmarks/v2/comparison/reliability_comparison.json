@@ -1,0 +1,26 @@
+{
+  "gemma3:4b": {
+    "total_inferences": 150,
+    "successful_inferences": 150,
+    "failed_inferences": 0,
+    "invalid_json_responses": 0,
+    "success_rate_pct": 100.0,
+    "invalid_json_rate_pct": 0.0
+  },
+  "mistral:latest": {
+    "total_inferences": 150,
+    "successful_inferences": 150,
+    "failed_inferences": 0,
+    "invalid_json_responses": 0,
+    "success_rate_pct": 100.0,
+    "invalid_json_rate_pct": 0.0
+  },
+  "llama3:latest": {
+    "total_inferences": 150,
+    "successful_inferences": 150,
+    "failed_inferences": 0,
+    "invalid_json_responses": 0,
+    "success_rate_pct": 100.0,
+    "invalid_json_rate_pct": 0.0
+  }
+}

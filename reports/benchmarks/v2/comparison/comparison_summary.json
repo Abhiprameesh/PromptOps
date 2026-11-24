@@ -1,0 +1,918 @@
+{
+  "models": {
+    "gemma3:4b": {
+      "composite_accuracy": 32.0,
+      "category_accuracy": 48.0,
+      "priority_accuracy": 52.0,
+      "category_metrics": {
+        "accuracy": 48.0,
+        "per_class": {
+          "authentication": {
+            "precision": 1.0,
+            "recall": 0.1667,
+            "f1": 0.2857,
+            "support": 6
+          },
+          "backend": {
+            "precision": 0.3333,
+            "recall": 0.1429,
+            "f1": 0.2,
+            "support": 7
+          },
+          "bug": {
+            "precision": 0.2778,
+            "recall": 0.7143,
+            "f1": 0.4,
+            "support": 7
+          },
+          "database": {
+            "precision": 0.75,
+            "recall": 0.5,
+            "f1": 0.6,
+            "support": 6
+          },
+          "documentation": {
+            "precision": 0.5556,
+            "recall": 0.8333,
+            "f1": 0.6667,
+            "support": 6
+          },
+          "feature-request": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 6
+          },
+          "performance": {
+            "precision": 0.5556,
+            "recall": 0.8333,
+            "f1": 0.6667,
+            "support": 6
+          },
+          "ui": {
+            "precision": 0.6667,
+            "recall": 0.6667,
+            "f1": 0.6667,
+            "support": 6
+          }
+        },
+        "macro_avg": {
+          "precision": 0.5174,
+          "recall": 0.4822,
+          "f1": 0.4357
+        },
+        "weighted_avg": {
+          "precision": 0.5089,
+          "recall": 0.48,
+          "f1": 0.4303
+        },
+        "confusion_matrix": {
+          "authentication": {
+            "authentication": 1,
+            "backend": 1,
+            "bug": 4,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "backend": {
+            "authentication": 0,
+            "backend": 1,
+            "bug": 5,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 1,
+            "ui": 0
+          },
+          "bug": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 5,
+            "database": 1,
+            "documentation": 1,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "database": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 1,
+            "database": 3,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 2,
+            "ui": 0
+          },
+          "documentation": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 1,
+            "database": 0,
+            "documentation": 5,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "feature-request": {
+            "authentication": 0,
+            "backend": 1,
+            "bug": 0,
+            "database": 0,
+            "documentation": 3,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 2
+          },
+          "performance": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 1,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 5,
+            "ui": 0
+          },
+          "ui": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 1,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 1,
+            "ui": 4
+          }
+        }
+      },
+      "priority_metrics": {
+        "accuracy": 52.0,
+        "per_class": {
+          "high": {
+            "precision": 0.4857,
+            "recall": 0.9444,
+            "f1": 0.6415,
+            "support": 18
+          },
+          "low": {
+            "precision": 1.0,
+            "recall": 0.1667,
+            "f1": 0.2857,
+            "support": 12
+          },
+          "medium": {
+            "precision": 0.5385,
+            "recall": 0.35,
+            "f1": 0.4242,
+            "support": 20
+          }
+        },
+        "macro_avg": {
+          "precision": 0.6747,
+          "recall": 0.487,
+          "f1": 0.4505
+        },
+        "weighted_avg": {
+          "precision": 0.6303,
+          "recall": 0.52,
+          "f1": 0.4692
+        },
+        "confusion_matrix": {
+          "high": {
+            "high": 17,
+            "low": 0,
+            "medium": 1
+          },
+          "low": {
+            "high": 5,
+            "low": 2,
+            "medium": 5
+          },
+          "medium": {
+            "high": 13,
+            "low": 0,
+            "medium": 7
+          }
+        }
+      },
+      "aggregate_latency": {
+        "mean_ms": 202485.63,
+        "median_ms": 203242.32,
+        "p95_ms": 382009.41,
+        "min_ms": 6134.78,
+        "max_ms": 425658.58,
+        "std_ms": 117793.62,
+        "variance_ms": 13875337351.05,
+        "total_samples": 150
+      },
+      "repetition_latency": {
+        "rep_1": {
+          "run_id": 10,
+          "accuracy": 32.0,
+          "mean_ms": 222072.09,
+          "median_ms": 226066.36,
+          "p95_ms": 413897.85,
+          "min_ms": 8594.25,
+          "max_ms": 425658.58,
+          "std_ms": 126941.85,
+          "variance_ms": 16114232928.61
+        },
+        "rep_2": {
+          "run_id": 11,
+          "accuracy": 32.0,
+          "mean_ms": 193060.71,
+          "median_ms": 192782.65,
+          "p95_ms": 371044.13,
+          "min_ms": 6134.78,
+          "max_ms": 382653.01,
+          "std_ms": 113056.87,
+          "variance_ms": 12781856358.79
+        },
+        "rep_3": {
+          "run_id": 12,
+          "accuracy": 32.0,
+          "mean_ms": 192324.07,
+          "median_ms": 191825.0,
+          "p95_ms": 369721.07,
+          "min_ms": 6215.06,
+          "max_ms": 381482.82,
+          "std_ms": 112733.3,
+          "variance_ms": 12708798007.83
+        }
+      },
+      "consistency": {
+        "identical_predictions_across_repetitions": true,
+        "inconsistent_case_count": 0,
+        "inconsistent_case_ids": [],
+        "accuracy_std_across_reps": 0.0,
+        "mean_latency_std_across_reps": 16966.38
+      },
+      "reliability": {
+        "total_inferences": 150,
+        "successful_inferences": 150,
+        "failed_inferences": 0,
+        "invalid_json_responses": 0,
+        "success_rate_pct": 100.0,
+        "invalid_json_rate_pct": 0.0
+      },
+      "top_confused_pairs": [
+        {
+          "true_class": "backend",
+          "predicted_class": "bug",
+          "count": 5
+        },
+        {
+          "true_class": "authentication",
+          "predicted_class": "bug",
+          "count": 4
+        },
+        {
+          "true_class": "feature-request",
+          "predicted_class": "documentation",
+          "count": 3
+        },
+        {
+          "true_class": "database",
+          "predicted_class": "performance",
+          "count": 2
+        },
+        {
+          "true_class": "feature-request",
+          "predicted_class": "ui",
+          "count": 2
+        }
+      ]
+    },
+    "mistral:latest": {
+      "composite_accuracy": 24.0,
+      "category_accuracy": 70.0,
+      "priority_accuracy": 38.0,
+      "category_metrics": {
+        "accuracy": 70.0,
+        "per_class": {
+          "authentication": {
+            "precision": 0.75,
+            "recall": 0.5,
+            "f1": 0.6,
+            "support": 6
+          },
+          "backend": {
+            "precision": 0.4286,
+            "recall": 0.8571,
+            "f1": 0.5714,
+            "support": 7
+          },
+          "bug": {
+            "precision": 1.0,
+            "recall": 0.1429,
+            "f1": 0.25,
+            "support": 7
+          },
+          "database": {
+            "precision": 0.8,
+            "recall": 0.6667,
+            "f1": 0.7273,
+            "support": 6
+          },
+          "documentation": {
+            "precision": 1.0,
+            "recall": 0.8333,
+            "f1": 0.9091,
+            "support": 6
+          },
+          "feature-request": {
+            "precision": 1.0,
+            "recall": 0.6667,
+            "f1": 0.8,
+            "support": 6
+          },
+          "performance": {
+            "precision": 0.75,
+            "recall": 1.0,
+            "f1": 0.8571,
+            "support": 6
+          },
+          "ui": {
+            "precision": 0.6667,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 6
+          }
+        },
+        "macro_avg": {
+          "precision": 0.7994,
+          "recall": 0.7083,
+          "f1": 0.6894
+        },
+        "weighted_avg": {
+          "precision": 0.796,
+          "recall": 0.7,
+          "f1": 0.6782
+        },
+        "confusion_matrix": {
+          "authentication": {
+            "authentication": 3,
+            "backend": 3,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "backend": {
+            "authentication": 0,
+            "backend": 6,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 1,
+            "ui": 0
+          },
+          "bug": {
+            "authentication": 1,
+            "backend": 3,
+            "bug": 1,
+            "database": 1,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 1
+          },
+          "database": {
+            "authentication": 0,
+            "backend": 1,
+            "bug": 0,
+            "database": 4,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 1,
+            "ui": 0
+          },
+          "documentation": {
+            "authentication": 0,
+            "backend": 1,
+            "bug": 0,
+            "database": 0,
+            "documentation": 5,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "feature-request": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 4,
+            "performance": 0,
+            "ui": 2
+          },
+          "performance": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 6,
+            "ui": 0
+          },
+          "ui": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 6
+          }
+        }
+      },
+      "priority_metrics": {
+        "accuracy": 38.0,
+        "per_class": {
+          "high": {
+            "precision": 0.3913,
+            "recall": 1.0,
+            "f1": 0.5625,
+            "support": 18
+          },
+          "low": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 12
+          },
+          "medium": {
+            "precision": 0.25,
+            "recall": 0.05,
+            "f1": 0.0833,
+            "support": 20
+          }
+        },
+        "macro_avg": {
+          "precision": 0.2138,
+          "recall": 0.35,
+          "f1": 0.2153
+        },
+        "weighted_avg": {
+          "precision": 0.2409,
+          "recall": 0.38,
+          "f1": 0.2358
+        },
+        "confusion_matrix": {
+          "high": {
+            "high": 18,
+            "low": 0,
+            "medium": 0
+          },
+          "low": {
+            "high": 9,
+            "low": 0,
+            "medium": 3
+          },
+          "medium": {
+            "high": 19,
+            "low": 0,
+            "medium": 1
+          }
+        }
+      },
+      "aggregate_latency": {
+        "mean_ms": 262768.6,
+        "median_ms": 250059.67,
+        "p95_ms": 571345.74,
+        "min_ms": 6547.5,
+        "max_ms": 642109.43,
+        "std_ms": 159661.34,
+        "variance_ms": 25491744748.98,
+        "total_samples": 150
+      },
+      "repetition_latency": {
+        "rep_1": {
+          "run_id": 13,
+          "accuracy": 24.0,
+          "mean_ms": 218120.44,
+          "median_ms": 214787.46,
+          "p95_ms": 421606.85,
+          "min_ms": 8700.98,
+          "max_ms": 436428.3,
+          "std_ms": 130082.98,
+          "variance_ms": 16921580854.28
+        },
+        "rep_2": {
+          "run_id": 14,
+          "accuracy": 24.0,
+          "mean_ms": 220938.91,
+          "median_ms": 218742.44,
+          "p95_ms": 425070.92,
+          "min_ms": 6547.5,
+          "max_ms": 440098.27,
+          "std_ms": 131139.27,
+          "variance_ms": 17197507272.7
+        },
+        "rep_3": {
+          "run_id": 15,
+          "accuracy": 24.0,
+          "mean_ms": 349246.47,
+          "median_ms": 341996.45,
+          "p95_ms": 624117.11,
+          "min_ms": 58920.27,
+          "max_ms": 642109.43,
+          "std_ms": 178734.47,
+          "variance_ms": 31946009956.52
+        }
+      },
+      "consistency": {
+        "identical_predictions_across_repetitions": true,
+        "inconsistent_case_count": 0,
+        "inconsistent_case_ids": [],
+        "accuracy_std_across_reps": 0.0,
+        "mean_latency_std_across_reps": 74905.28
+      },
+      "reliability": {
+        "total_inferences": 150,
+        "successful_inferences": 150,
+        "failed_inferences": 0,
+        "invalid_json_responses": 0,
+        "success_rate_pct": 100.0,
+        "invalid_json_rate_pct": 0.0
+      },
+      "top_confused_pairs": [
+        {
+          "true_class": "authentication",
+          "predicted_class": "backend",
+          "count": 3
+        },
+        {
+          "true_class": "bug",
+          "predicted_class": "backend",
+          "count": 3
+        },
+        {
+          "true_class": "feature-request",
+          "predicted_class": "ui",
+          "count": 2
+        },
+        {
+          "true_class": "backend",
+          "predicted_class": "performance",
+          "count": 1
+        },
+        {
+          "true_class": "bug",
+          "predicted_class": "authentication",
+          "count": 1
+        }
+      ]
+    },
+    "llama3:latest": {
+      "composite_accuracy": 26.0,
+      "category_accuracy": 62.0,
+      "priority_accuracy": 44.0,
+      "category_metrics": {
+        "accuracy": 62.0,
+        "per_class": {
+          "authentication": {
+            "precision": 0.5,
+            "recall": 0.1667,
+            "f1": 0.25,
+            "support": 6
+          },
+          "backend": {
+            "precision": 0.3636,
+            "recall": 0.5714,
+            "f1": 0.4444,
+            "support": 7
+          },
+          "bug": {
+            "precision": 0.5,
+            "recall": 0.5714,
+            "f1": 0.5333,
+            "support": 7
+          },
+          "database": {
+            "precision": 0.8333,
+            "recall": 0.8333,
+            "f1": 0.8333,
+            "support": 6
+          },
+          "documentation": {
+            "precision": 1.0,
+            "recall": 0.6667,
+            "f1": 0.8,
+            "support": 6
+          },
+          "feature-request": {
+            "precision": 1.0,
+            "recall": 0.1667,
+            "f1": 0.2857,
+            "support": 6
+          },
+          "performance": {
+            "precision": 0.8571,
+            "recall": 1.0,
+            "f1": 0.9231,
+            "support": 6
+          },
+          "ui": {
+            "precision": 0.5455,
+            "recall": 1.0,
+            "f1": 0.7059,
+            "support": 6
+          }
+        },
+        "macro_avg": {
+          "precision": 0.6999,
+          "recall": 0.622,
+          "f1": 0.597
+        },
+        "weighted_avg": {
+          "precision": 0.6892,
+          "recall": 0.62,
+          "f1": 0.5926
+        },
+        "confusion_matrix": {
+          "authentication": {
+            "authentication": 1,
+            "backend": 3,
+            "bug": 1,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 1
+          },
+          "backend": {
+            "authentication": 0,
+            "backend": 4,
+            "bug": 2,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 1,
+            "ui": 0
+          },
+          "bug": {
+            "authentication": 1,
+            "backend": 0,
+            "bug": 4,
+            "database": 1,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 1
+          },
+          "database": {
+            "authentication": 0,
+            "backend": 1,
+            "bug": 0,
+            "database": 5,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 0
+          },
+          "documentation": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 1,
+            "database": 0,
+            "documentation": 4,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 1
+          },
+          "feature-request": {
+            "authentication": 0,
+            "backend": 3,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 1,
+            "performance": 0,
+            "ui": 2
+          },
+          "performance": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 6,
+            "ui": 0
+          },
+          "ui": {
+            "authentication": 0,
+            "backend": 0,
+            "bug": 0,
+            "database": 0,
+            "documentation": 0,
+            "feature-request": 0,
+            "performance": 0,
+            "ui": 6
+          }
+        }
+      },
+      "priority_metrics": {
+        "accuracy": 44.0,
+        "per_class": {
+          "high": {
+            "precision": 0.45,
+            "recall": 1.0,
+            "f1": 0.6207,
+            "support": 18
+          },
+          "low": {
+            "precision": 1.0,
+            "recall": 0.0833,
+            "f1": 0.1538,
+            "support": 12
+          },
+          "medium": {
+            "precision": 0.3333,
+            "recall": 0.15,
+            "f1": 0.2069,
+            "support": 20
+          }
+        },
+        "macro_avg": {
+          "precision": 0.5944,
+          "recall": 0.4111,
+          "f1": 0.3271
+        },
+        "weighted_avg": {
+          "precision": 0.5353,
+          "recall": 0.44,
+          "f1": 0.3431
+        },
+        "confusion_matrix": {
+          "high": {
+            "high": 18,
+            "low": 0,
+            "medium": 0
+          },
+          "low": {
+            "high": 5,
+            "low": 1,
+            "medium": 6
+          },
+          "medium": {
+            "high": 17,
+            "low": 0,
+            "medium": 3
+          }
+        }
+      },
+      "aggregate_latency": {
+        "mean_ms": 220417.02,
+        "median_ms": 219974.63,
+        "p95_ms": 419597.07,
+        "min_ms": 5595.73,
+        "max_ms": 456360.24,
+        "std_ms": 129225.52,
+        "variance_ms": 16699235085.17,
+        "total_samples": 150
+      },
+      "repetition_latency": {
+        "rep_1": {
+          "run_id": 16,
+          "accuracy": 26.0,
+          "mean_ms": 211337.77,
+          "median_ms": 208350.87,
+          "p95_ms": 411261.81,
+          "min_ms": 5595.73,
+          "max_ms": 428630.31,
+          "std_ms": 126261.21,
+          "variance_ms": 15941893127.64
+        },
+        "rep_2": {
+          "run_id": 17,
+          "accuracy": 26.0,
+          "mean_ms": 236700.2,
+          "median_ms": 233348.13,
+          "p95_ms": 443135.39,
+          "min_ms": 9690.5,
+          "max_ms": 456360.24,
+          "std_ms": 134335.43,
+          "variance_ms": 18046008289.35
+        },
+        "rep_3": {
+          "run_id": 18,
+          "accuracy": 26.0,
+          "mean_ms": 213213.1,
+          "median_ms": 213613.86,
+          "p95_ms": 410773.73,
+          "min_ms": 6383.6,
+          "max_ms": 424132.49,
+          "std_ms": 127999.15,
+          "variance_ms": 16383781624.59
+        }
+      },
+      "consistency": {
+        "identical_predictions_across_repetitions": true,
+        "inconsistent_case_count": 0,
+        "inconsistent_case_ids": [],
+        "accuracy_std_across_reps": 0.0,
+        "mean_latency_std_across_reps": 14132.78
+      },
+      "reliability": {
+        "total_inferences": 150,
+        "successful_inferences": 150,
+        "failed_inferences": 0,
+        "invalid_json_responses": 0,
+        "success_rate_pct": 100.0,
+        "invalid_json_rate_pct": 0.0
+      },
+      "top_confused_pairs": [
+        {
+          "true_class": "authentication",
+          "predicted_class": "backend",
+          "count": 3
+        },
+        {
+          "true_class": "feature-request",
+          "predicted_class": "backend",
+          "count": 3
+        },
+        {
+          "true_class": "backend",
+          "predicted_class": "bug",
+          "count": 2
+        },
+        {
+          "true_class": "feature-request",
+          "predicted_class": "ui",
+          "count": 2
+        },
+        {
+          "true_class": "authentication",
+          "predicted_class": "bug",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "rankings": {
+    "by_composite_accuracy": [
+      "gemma3:4b",
+      "llama3:latest",
+      "mistral:latest"
+    ],
+    "by_category_accuracy": [
+      "mistral:latest",
+      "llama3:latest",
+      "gemma3:4b"
+    ],
+    "by_priority_accuracy": [
+      "gemma3:4b",
+      "llama3:latest",
+      "mistral:latest"
+    ],
+    "by_category_macro_f1": [
+      "mistral:latest",
+      "llama3:latest",
+      "gemma3:4b"
+    ],
+    "by_mean_latency": [
+      "gemma3:4b",
+      "llama3:latest",
+      "mistral:latest"
+    ]
+  },
+  "recommendations": {
+    "best_overall_composite": {
+      "model": "gemma3:4b",
+      "score": 32.0,
+      "rationale": "Achieved the highest composite pass rate (32.00%) requiring simultaneous accuracy in category, priority, and summary validity."
+    },
+    "best_category_classification": {
+      "model": "mistral:latest",
+      "score": 70.0,
+      "rationale": "Highest category classification accuracy (70.00%) and macro F1 (0.6894), correctly mapping diverse architectural issues to their exact domain."
+    },
+    "best_priority_classification": {
+      "model": "gemma3:4b",
+      "score": 52.0,
+      "rationale": "Highest priority triage accuracy (52.00%) and priority macro F1 (0.4505), with significantly fewer severity misclassifications."
+    },
+    "best_latency": {
+      "model": "gemma3:4b",
+      "score_ms": 202485.63,
+      "rationale": "Lowest mean latency (202,485.6 ms across 150 samples) with fast execution cycles under 5-worker semaphore concurrency."
+    },
+    "best_balanced_tradeoff": {
+      "model": "mistral:latest",
+      "tradeoff_notes": "Mistral 7B delivers superior category discrimination (70.00% vs 48.00% for Gemma) with top F1 scores in backend, database, and UI. However, Gemma 3 4B achieves superior composite accuracy (32.00% vs 24.00%) due to better priority triage calibration. For routing/triage where category routing is paramount, Mistral 7B is the recommended choice. For automated end-to-end SLA triage where priority and summary correctness are required, Gemma 3 4B is the recommended choice."
+    }
+  }
+}

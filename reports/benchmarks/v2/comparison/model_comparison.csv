@@ -1,0 +1,4 @@
+Model,Total Cases,Composite Accuracy (%),Category Accuracy (%),Priority Accuracy (%),Category Macro F1,Category Weighted F1,Priority Macro F1,Mean Latency (ms),Median Latency (ms),P95 Latency (ms),Min Latency (ms),Max Latency (ms),Inference Success Rate (%)
+gemma3:4b,50,32.0,48.0,52.0,0.4357,0.4303,0.4505,202485.63,203242.32,382009.41,6134.78,425658.58,100.0
+mistral:latest,50,24.0,70.0,38.0,0.6894,0.6782,0.2153,262768.6,250059.67,571345.74,6547.5,642109.43,100.0
+llama3:latest,50,26.0,62.0,44.0,0.597,0.5926,0.3271,220417.02,219974.63,419597.07,5595.73,456360.24,100.0

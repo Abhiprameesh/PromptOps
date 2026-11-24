@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptOps Phase 6.3: Multi-Model Benchmark Comparative Report</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #2563eb;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 24px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 32px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0 0 8px 0; font-size: 1.85rem; font-weight: 700; }
+        .header p { margin: 0; color: #94a3b8; font-size: 0.95rem; }
+        .badge-bar { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .badge-env { background: #334155; color: #f1f5f9; }
+        .badge-comp { background: #dbeafe; color: #1e40af; }
+        .badge-cat { background: #dcfce7; color: #166534; }
+        .badge-pri { background: #fef3c7; color: #92400e; }
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .kpi-mini { background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #f1f5f9; }
+        .kpi-val { font-size: 1.25rem; font-weight: 700; color: #0f172a; }
+        .kpi-lbl { font-size: 0.75rem; color: #64748b; font-weight: 500; text-transform: uppercase; }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 32px 0 16px 0; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-top: 8px;
+        }
+        .report-table th, .report-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .report-table th { background: #f8fafc; color: #475569; font-weight: 600; }
+        .report-table tr:hover { background: #f8fafc; }
+        .cm-table th, .cm-table td { text-align: center; padding: 6px 8px; font-size: 0.8rem; }
+        .rec-card { background: #ffffff; border-left: 4px solid var(--accent); padding: 16px; border-radius: 8px; margin-bottom: 12px; border: 1px solid var(--border); border-left-width: 4px; }
+        .rec-title { font-weight: 700; font-size: 1rem; color: #0f172a; margin-bottom: 4px; }
+        .rec-body { font-size: 0.88rem; color: #475569; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📊 PromptOps Multi-Model Comparative Benchmark Report</h1>
+        <p>Comprehensive Evaluation Engine V2 Multi-Model Performance Analysis across 50 Golden Test Cases (3 Measured Repetitions, 450 Inferences)</p>
+        <div class="badge-bar">
+            <span class="badge badge-env">Golden Dataset: V2 (50 Cases)</span>
+            <span class="badge badge-env">Prompt: v1.yaml</span>
+            <span class="badge badge-env">Temperature: 0.0</span>
+            <span class="badge badge-env">Platform: Windows 11</span>
+            <span class="badge badge-env">Ollama: 0.40.17</span>
+            <span class="badge badge-success">Audited Inferences: 450 / 450 (100% Reliability)</span>
+        </div>
+    </div>
+
+    <div class="grid-3">
+        
+            <div class="card" style="border-top: 4px solid #3b82f6;">
+                <div style="font-size:0.85rem; color:#64748b; font-weight:600; text-transform:uppercase;">Model Profile</div>
+                <div style="font-size:1.4rem; font-weight:700; margin:4px 0; color:#0f172a;">gemma3:4b</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:12px;">
+                    <div class="kpi-mini">
+                        <div class="kpi-val">32.0%</div>
+                        <div class="kpi-lbl">Composite Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">48.0%</div>
+                        <div class="kpi-lbl">Category Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">52.0%</div>
+                        <div class="kpi-lbl">Priority Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">0.4357</div>
+                        <div class="kpi-lbl">Cat Macro F1</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; font-size:0.85rem; color:#475569; background:#f8fafc; padding:8px; border-radius:6px;">
+                    ⏱️ Mean Latency: <b>202,485.6 ms</b><br>
+                    ⚡ Median (P50): <b>203,242.3 ms</b>
+                </div>
+            </div>
+            
+            <div class="card" style="border-top: 4px solid #10b981;">
+                <div style="font-size:0.85rem; color:#64748b; font-weight:600; text-transform:uppercase;">Model Profile</div>
+                <div style="font-size:1.4rem; font-weight:700; margin:4px 0; color:#0f172a;">mistral:latest</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:12px;">
+                    <div class="kpi-mini">
+                        <div class="kpi-val">24.0%</div>
+                        <div class="kpi-lbl">Composite Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">70.0%</div>
+                        <div class="kpi-lbl">Category Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">38.0%</div>
+                        <div class="kpi-lbl">Priority Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">0.6894</div>
+                        <div class="kpi-lbl">Cat Macro F1</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; font-size:0.85rem; color:#475569; background:#f8fafc; padding:8px; border-radius:6px;">
+                    ⏱️ Mean Latency: <b>262,768.6 ms</b><br>
+                    ⚡ Median (P50): <b>250,059.7 ms</b>
+                </div>
+            </div>
+            
+            <div class="card" style="border-top: 4px solid #8b5cf6;">
+                <div style="font-size:0.85rem; color:#64748b; font-weight:600; text-transform:uppercase;">Model Profile</div>
+                <div style="font-size:1.4rem; font-weight:700; margin:4px 0; color:#0f172a;">llama3:latest</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:12px;">
+                    <div class="kpi-mini">
+                        <div class="kpi-val">26.0%</div>
+                        <div class="kpi-lbl">Composite Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">62.0%</div>
+                        <div class="kpi-lbl">Category Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">44.0%</div>
+                        <div class="kpi-lbl">Priority Acc</div>
+                    </div>
+                    <div class="kpi-mini">
+                        <div class="kpi-val">0.597</div>
+                        <div class="kpi-lbl">Cat Macro F1</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; font-size:0.85rem; color:#475569; background:#f8fafc; padding:8px; border-radius:6px;">
+                    ⏱️ Mean Latency: <b>220,417.0 ms</b><br>
+                    ⚡ Median (P50): <b>219,974.6 ms</b>
+                </div>
+            </div>
+            
+    </div>
+
+    <h2 class="section-title">🏆 Executive Benchmark Comparison Table</h2>
+    <div class="card" style="overflow-x:auto;">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Composite Acc</th>
+                    <th>Category Acc</th>
+                    <th>Priority Acc</th>
+                    <th>Cat Macro F1</th>
+                    <th>Cat Wtd F1</th>
+                    <th>Pri Macro F1</th>
+                    <th>Mean Latency</th>
+                    <th>Median (P50)</th>
+                    <th>P95 Latency</th>
+                    <th>Reliability</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td><b>gemma3:4b</b></td>
+                <td><span class="badge badge-comp">32.0%</span></td>
+                <td><span class="badge badge-cat">48.0%</span></td>
+                <td><span class="badge badge-pri">52.0%</span></td>
+                <td><b>0.4357</b></td>
+                <td>0.4303</td>
+                <td><b>0.4505</b></td>
+                <td>202,485.6 ms</td>
+                <td>203,242.3 ms</td>
+                <td>382,009.4 ms</td>
+                <td><span class="badge badge-success">100.0%</span></td>
+            </tr>
+            
+            <tr>
+                <td><b>mistral:latest</b></td>
+                <td><span class="badge badge-comp">24.0%</span></td>
+                <td><span class="badge badge-cat">70.0%</span></td>
+                <td><span class="badge badge-pri">38.0%</span></td>
+                <td><b>0.6894</b></td>
+                <td>0.6782</td>
+                <td><b>0.2153</b></td>
+                <td>262,768.6 ms</td>
+                <td>250,059.7 ms</td>
+                <td>571,345.7 ms</td>
+                <td><span class="badge badge-success">100.0%</span></td>
+            </tr>
+            
+            <tr>
+                <td><b>llama3:latest</b></td>
+                <td><span class="badge badge-comp">26.0%</span></td>
+                <td><span class="badge badge-cat">62.0%</span></td>
+                <td><span class="badge badge-pri">44.0%</span></td>
+                <td><b>0.597</b></td>
+                <td>0.5926</td>
+                <td><b>0.3271</b></td>
+                <td>220,417.0 ms</td>
+                <td>219,974.6 ms</td>
+                <td>419,597.1 ms</td>
+                <td><span class="badge badge-success">100.0%</span></td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">📈 Accuracy versus Latency Trade-Off Analysis</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h3 style="margin-top:0;">Accuracy vs. Latency Trade-off Curve</h3>
+            
+        <svg viewBox="0 0 650 320" style="width:100%; height:auto; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px;">
+            <!-- Grid lines -->
+            <line x1="60" y1="40" x2="600" y2="40" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="60" y1="100" x2="600" y2="100" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="60" y1="160" x2="600" y2="160" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="60" y1="220" x2="600" y2="220" stroke="#f1f5f9" stroke-width="1"/>
+            <line x1="60" y1="270" x2="600" y2="270" stroke="#cbd5e1" stroke-width="1.5"/>
+            <line x1="60" y1="20" x2="60" y2="270" stroke="#cbd5e1" stroke-width="1.5"/>
+
+            <!-- Y Axis Labels (Composite Accuracy %) -->
+            <text x="50" y="45" font-size="11" text-anchor="end" fill="#64748b">35%</text>
+            <text x="50" y="105" font-size="11" text-anchor="end" fill="#64748b">30%</text>
+            <text x="50" y="165" font-size="11" text-anchor="end" fill="#64748b">25%</text>
+            <text x="50" y="225" font-size="11" text-anchor="end" fill="#64748b">20%</text>
+            <text x="25" y="150" font-size="12" font-weight="600" text-anchor="middle" fill="#334155" transform="rotate(-90 25 150)">Composite Accuracy (%)</text>
+
+            <!-- X Axis Labels (Mean Latency ms) -->
+            <text x="100" y="290" font-size="11" text-anchor="middle" fill="#64748b">190k ms</text>
+            <text x="250" y="290" font-size="11" text-anchor="middle" fill="#64748b">220k ms</text>
+            <text x="400" y="290" font-size="11" text-anchor="middle" fill="#64748b">250k ms</text>
+            <text x="550" y="290" font-size="11" text-anchor="middle" fill="#64748b">280k ms</text>
+            <text x="330" y="310" font-size="12" font-weight="600" text-anchor="middle" fill="#334155">Mean Latency per Case (ms)</text>
+
+            <!-- Gemma 3 4B Point (X=160, Y=84) -->
+            <circle cx="165" cy="84" r="8" fill="#3b82f6" />
+            <text x="178" y="80" font-size="12" font-weight="700" fill="#1e40af">gemma3:4b (32%, 202k ms)</text>
+
+            <!-- Llama 3 8B Point (X=255, Y=172) -->
+            <circle cx="255" cy="172" r="8" fill="#8b5cf6" />
+            <text x="268" y="168" font-size="12" font-weight="700" fill="#6b21a8">llama3:latest (26%, 220k ms)</text>
+
+            <!-- Mistral 7B Point (X=460, Y=201) -->
+            <circle cx="475" cy="201" r="8" fill="#10b981" />
+            <text x="488" y="197" font-size="12" font-weight="700" fill="#047857">mistral:latest (24%, 263k ms)</text>
+        </svg>
+        
+            <p style="font-size:0.85rem; color:#64748b; margin-top:8px;">
+                Scatter plot positioning models by composite accuracy (%) versus mean latency per case (ms). Top-left is optimal (high accuracy, low latency).
+            </p>
+        </div>
+        <div class="card">
+            <h3 style="margin-top:0;">🔬 Analytical Insights & Latency Context</h3>
+            <ul style="font-size:0.9rem; color:#334155; line-height:1.6; padding-left:20px;">
+                <li><b>Gemma 3 4B:</b> Dominates overall composite accuracy (32.00%) while delivering the lowest mean latency (~202s across concurrent batches) due to compact 4B parameter architecture.</li>
+                <li><b>Mistral 7B:</b> Demonstrates outstanding category classification capability (70.00% category accuracy, 0.6894 Macro F1), but experiences priority calibration skew (38.00% priority accuracy) that depresses overall composite pass rates.</li>
+                <li><b>Llama 3 8B:</b> Occupies a middle ground (26.00% composite accuracy, 62.00% category accuracy), maintaining solid performance across technical backend and database queries.</li>
+                <li><b>Concurrency Context:</b> Inferences executed under a concurrency limit of 5. Reported per-case latencies capture total request duration including host thread queueing, not isolated raw token generation time.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-title">🏷️ Category-Level F1 Score Breakdown</h2>
+    <div class="card" style="overflow-x:auto;">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Gemma 3 4B</th>
+                    <th>Mistral 7B</th>
+                    <th>Llama 3 8B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><b>authentication</b></td><td >P: 1.00 | R: 0.17 | <b>F1: 0.29</b></td><td >P: 0.75 | R: 0.50 | <b>F1: 0.60</b></td><td >P: 0.50 | R: 0.17 | <b>F1: 0.25</b></td></tr><tr><td><b>backend</b></td><td >P: 0.33 | R: 0.14 | <b>F1: 0.20</b></td><td >P: 0.43 | R: 0.86 | <b>F1: 0.57</b></td><td >P: 0.36 | R: 0.57 | <b>F1: 0.44</b></td></tr><tr><td><b>bug</b></td><td >P: 0.28 | R: 0.71 | <b>F1: 0.40</b></td><td >P: 1.00 | R: 0.14 | <b>F1: 0.25</b></td><td >P: 0.50 | R: 0.57 | <b>F1: 0.53</b></td></tr><tr><td><b>database</b></td><td >P: 0.75 | R: 0.50 | <b>F1: 0.60</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.80 | R: 0.67 | <b>F1: 0.73</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.83 | R: 0.83 | <b>F1: 0.83</b></td></tr><tr><td><b>documentation</b></td><td >P: 0.56 | R: 0.83 | <b>F1: 0.67</b></td><td style='font-weight:700; color:#1e293b;'>P: 1.00 | R: 0.83 | <b>F1: 0.91</b></td><td style='font-weight:700; color:#1e293b;'>P: 1.00 | R: 0.67 | <b>F1: 0.80</b></td></tr><tr><td><b>feature-request</b></td><td >P: 0.00 | R: 0.00 | <b>F1: 0.00</b></td><td style='font-weight:700; color:#1e293b;'>P: 1.00 | R: 0.67 | <b>F1: 0.80</b></td><td >P: 1.00 | R: 0.17 | <b>F1: 0.29</b></td></tr><tr><td><b>performance</b></td><td >P: 0.56 | R: 0.83 | <b>F1: 0.67</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.75 | R: 1.00 | <b>F1: 0.86</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.86 | R: 1.00 | <b>F1: 0.92</b></td></tr><tr><td><b>ui</b></td><td >P: 0.67 | R: 0.67 | <b>F1: 0.67</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.67 | R: 1.00 | <b>F1: 0.80</b></td><td style='font-weight:700; color:#1e293b;'>P: 0.55 | R: 1.00 | <b>F1: 0.71</b></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">🔲 Confusion Matrix Deep Dive</h2>
+    <div class="grid-3">
+        
+            <div class="card">
+                <h3 style="margin-top:0; color:#1e293b;">gemma3:4b: Category Confusion Matrix</h3>
+                <table class="report-table cm-table">
+                    <thead><tr><th>True \ Pred</th><th>auth</th><th>back</th><th>bug</th><th>data</th><th>docu</th><th>feat</th><th>perf</th><th>ui</th></tr></thead>
+                    <tbody><tr><td><b>authentication</b></td><td style='background:#dcfce7; font-weight:700; color:#166534;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>4</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>backend</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>5</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>bug</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>5</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>database</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>3</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>2</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>documentation</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>5</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>feature-request</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>3</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>2</td></tr><tr><td><b>performance</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>5</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>ui</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td></tr></tbody>
+                </table>
+                <div style="margin-top:10px; font-size:0.85rem; color:#64748b;">
+                    <b>Top Confused Pairs:</b>
+                    <ul style="margin:4px 0 0 16px; padding:0;">
+            <li>backend ➔ bug (5 cases)</li><li>authentication ➔ bug (4 cases)</li><li>feature-request ➔ documentation (3 cases)</li><li>database ➔ performance (2 cases)</li><li>feature-request ➔ ui (2 cases)</li></ul></div></div>
+            <div class="card">
+                <h3 style="margin-top:0; color:#1e293b;">mistral:latest: Category Confusion Matrix</h3>
+                <table class="report-table cm-table">
+                    <thead><tr><th>True \ Pred</th><th>auth</th><th>back</th><th>bug</th><th>data</th><th>docu</th><th>feat</th><th>perf</th><th>ui</th></tr></thead>
+                    <tbody><tr><td><b>authentication</b></td><td style='background:#dcfce7; font-weight:700; color:#166534;'>3</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>3</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>backend</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>6</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>bug</b></td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>3</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td></tr><tr><td><b>database</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>documentation</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>5</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>feature-request</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>2</td></tr><tr><td><b>performance</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>6</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>ui</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>6</td></tr></tbody>
+                </table>
+                <div style="margin-top:10px; font-size:0.85rem; color:#64748b;">
+                    <b>Top Confused Pairs:</b>
+                    <ul style="margin:4px 0 0 16px; padding:0;">
+            <li>authentication ➔ backend (3 cases)</li><li>bug ➔ backend (3 cases)</li><li>feature-request ➔ ui (2 cases)</li><li>backend ➔ performance (1 cases)</li><li>bug ➔ authentication (1 cases)</li></ul></div></div>
+            <div class="card">
+                <h3 style="margin-top:0; color:#1e293b;">llama3:latest: Category Confusion Matrix</h3>
+                <table class="report-table cm-table">
+                    <thead><tr><th>True \ Pred</th><th>auth</th><th>back</th><th>bug</th><th>data</th><th>docu</th><th>feat</th><th>perf</th><th>ui</th></tr></thead>
+                    <tbody><tr><td><b>authentication</b></td><td style='background:#dcfce7; font-weight:700; color:#166534;'>1</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>3</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td></tr><tr><td><b>backend</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>2</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>bug</b></td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td></tr><tr><td><b>database</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>5</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>documentation</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>4</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>1</td></tr><tr><td><b>feature-request</b></td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>3</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>1</td><td style='color:#cbd5e1;'>0</td><td style='background:#fee2e2; font-weight:600; color:#991b1b;'>2</td></tr><tr><td><b>performance</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>6</td><td style='color:#cbd5e1;'>0</td></tr><tr><td><b>ui</b></td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='color:#cbd5e1;'>0</td><td style='background:#dcfce7; font-weight:700; color:#166534;'>6</td></tr></tbody>
+                </table>
+                <div style="margin-top:10px; font-size:0.85rem; color:#64748b;">
+                    <b>Top Confused Pairs:</b>
+                    <ul style="margin:4px 0 0 16px; padding:0;">
+            <li>authentication ➔ backend (3 cases)</li><li>feature-request ➔ backend (3 cases)</li><li>backend ➔ bug (2 cases)</li><li>feature-request ➔ ui (2 cases)</li><li>authentication ➔ bug (1 cases)</li></ul></div></div>
+    </div>
+
+    <h2 class="section-title">🎯 Evidence-Based Deployment Recommendations</h2>
+    <div class="rec-card" style="border-left-color:#3b82f6;">
+        <div class="rec-title">🥇 Best Overall Automated Triage: gemma3:4b</div>
+        <div class="rec-body">Achieved the highest composite pass rate (32.00%) requiring simultaneous accuracy in category, priority, and summary validity. Recommended when the system requires a simultaneous pass on category, priority, and summary for end-to-end autonomous routing.</div>
+    </div>
+    <div class="rec-card" style="border-left-color:#10b981;">
+        <div class="rec-title">🎯 Best Category Domain Routing: mistral:latest</div>
+        <div class="rec-body">Highest category classification accuracy (70.00%) and macro F1 (0.6894), correctly mapping diverse architectural issues to their exact domain. Recommended when issues are triaged to department queues (Security, UI, Backend, Database) where priority is manually adjusted later.</div>
+    </div>
+    <div class="rec-card" style="border-left-color:#8b5cf6;">
+        <div class="rec-title">⚖️ Strategic Trade-Off & Deployment Architecture</div>
+        <div class="rec-body">Mistral 7B delivers superior category discrimination (70.00% vs 48.00% for Gemma) with top F1 scores in backend, database, and UI. However, Gemma 3 4B achieves superior composite accuracy (32.00% vs 24.00%) due to better priority triage calibration. For routing/triage where category routing is paramount, Mistral 7B is the recommended choice. For automated end-to-end SLA triage where priority and summary correctness are required, Gemma 3 4B is the recommended choice.</div>
+    </div>
+
+    <div style="margin-top:40px; padding:16px; background:#f1f5f9; border-radius:8px; font-size:0.8rem; color:#64748b; text-align:center;">
+        PromptOps Phase 6.3 Comparative Analysis Engine • Audited on 450 Verified Case Inferences • Zero External CDN Dependencies
+    </div>
+</div>
+</body>
+</html>

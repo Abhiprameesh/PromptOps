@@ -1,0 +1,386 @@
+{
+  "gemma3:4b": {
+    "category_confusion_matrix": {
+      "authentication": {
+        "authentication": 1,
+        "backend": 1,
+        "bug": 4,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "backend": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 5,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "bug": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 5,
+        "database": 1,
+        "documentation": 1,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "database": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 1,
+        "database": 3,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 2,
+        "ui": 0
+      },
+      "documentation": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 1,
+        "database": 0,
+        "documentation": 5,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "feature-request": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 0,
+        "documentation": 3,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 2
+      },
+      "performance": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 1,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 5,
+        "ui": 0
+      },
+      "ui": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 1,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 4
+      }
+    },
+    "priority_confusion_matrix": {
+      "high": {
+        "high": 17,
+        "low": 0,
+        "medium": 1
+      },
+      "low": {
+        "high": 5,
+        "low": 2,
+        "medium": 5
+      },
+      "medium": {
+        "high": 13,
+        "low": 0,
+        "medium": 7
+      }
+    },
+    "top_confused_category_pairs": [
+      {
+        "true_class": "backend",
+        "predicted_class": "bug",
+        "count": 5
+      },
+      {
+        "true_class": "authentication",
+        "predicted_class": "bug",
+        "count": 4
+      },
+      {
+        "true_class": "feature-request",
+        "predicted_class": "documentation",
+        "count": 3
+      },
+      {
+        "true_class": "database",
+        "predicted_class": "performance",
+        "count": 2
+      },
+      {
+        "true_class": "feature-request",
+        "predicted_class": "ui",
+        "count": 2
+      }
+    ]
+  },
+  "mistral:latest": {
+    "category_confusion_matrix": {
+      "authentication": {
+        "authentication": 3,
+        "backend": 3,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "backend": {
+        "authentication": 0,
+        "backend": 6,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "bug": {
+        "authentication": 1,
+        "backend": 3,
+        "bug": 1,
+        "database": 1,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 1
+      },
+      "database": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 4,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "documentation": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 0,
+        "documentation": 5,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "feature-request": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 4,
+        "performance": 0,
+        "ui": 2
+      },
+      "performance": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 6,
+        "ui": 0
+      },
+      "ui": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 6
+      }
+    },
+    "priority_confusion_matrix": {
+      "high": {
+        "high": 18,
+        "low": 0,
+        "medium": 0
+      },
+      "low": {
+        "high": 9,
+        "low": 0,
+        "medium": 3
+      },
+      "medium": {
+        "high": 19,
+        "low": 0,
+        "medium": 1
+      }
+    },
+    "top_confused_category_pairs": [
+      {
+        "true_class": "authentication",
+        "predicted_class": "backend",
+        "count": 3
+      },
+      {
+        "true_class": "bug",
+        "predicted_class": "backend",
+        "count": 3
+      },
+      {
+        "true_class": "feature-request",
+        "predicted_class": "ui",
+        "count": 2
+      },
+      {
+        "true_class": "backend",
+        "predicted_class": "performance",
+        "count": 1
+      },
+      {
+        "true_class": "bug",
+        "predicted_class": "authentication",
+        "count": 1
+      }
+    ]
+  },
+  "llama3:latest": {
+    "category_confusion_matrix": {
+      "authentication": {
+        "authentication": 1,
+        "backend": 3,
+        "bug": 1,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 1
+      },
+      "backend": {
+        "authentication": 0,
+        "backend": 4,
+        "bug": 2,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "bug": {
+        "authentication": 1,
+        "backend": 0,
+        "bug": 4,
+        "database": 1,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 1
+      },
+      "database": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 5,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "documentation": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 1,
+        "database": 0,
+        "documentation": 4,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 1
+      },
+      "feature-request": {
+        "authentication": 0,
+        "backend": 3,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 1,
+        "performance": 0,
+        "ui": 2
+      },
+      "performance": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 6,
+        "ui": 0
+      },
+      "ui": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 6
+      }
+    },
+    "priority_confusion_matrix": {
+      "high": {
+        "high": 18,
+        "low": 0,
+        "medium": 0
+      },
+      "low": {
+        "high": 5,
+        "low": 1,
+        "medium": 6
+      },
+      "medium": {
+        "high": 17,
+        "low": 0,
+        "medium": 3
+      }
+    },
+    "top_confused_category_pairs": [
+      {
+        "true_class": "authentication",
+        "predicted_class": "backend",
+        "count": 3
+      },
+      {
+        "true_class": "feature-request",
+        "predicted_class": "backend",
+        "count": 3
+      },
+      {
+        "true_class": "backend",
+        "predicted_class": "bug",
+        "count": 2
+      },
+      {
+        "true_class": "feature-request",
+        "predicted_class": "ui",
+        "count": 2
+      },
+      {
+        "true_class": "authentication",
+        "predicted_class": "bug",
+        "count": 1
+      }
+    ]
+  }
+}
