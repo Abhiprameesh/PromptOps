@@ -197,8 +197,138 @@
     "mistral_latest_rep_3": {
       "model": "mistral:latest",
       "repetition": 3,
-      "status": "in_progress",
-      "started_at": "2026-11-23T18:16:00.988040"
+      "run_id": 15,
+      "status": "completed",
+      "started_at": "2026-11-24T18:25:50.117214",
+      "completed_at": "2026-11-24T18:36:32.316859",
+      "duration_sec": 642.16,
+      "accuracy": 24.0,
+      "category_accuracy": 70.0,
+      "priority_accuracy": 38.0,
+      "composite_accuracy": 24.0,
+      "avg_latency_ms": 349246.47,
+      "category_macro_f1": 0.6894,
+      "priority_macro_f1": 0.2153,
+      "stats": {
+        "latency": {
+          "avg_ms": 349246.47,
+          "median_ms": 341996.45,
+          "min_ms": 58920.27,
+          "max_ms": 642109.43,
+          "variance": 31946009956.52,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "llama3_latest_rep_1": {
+      "model": "llama3:latest",
+      "repetition": 1,
+      "run_id": 16,
+      "status": "completed",
+      "started_at": "2026-11-24T18:43:37.440307",
+      "completed_at": "2026-11-24T18:50:46.242204",
+      "duration_sec": 428.68,
+      "accuracy": 26.0,
+      "category_accuracy": 62.0,
+      "priority_accuracy": 44.0,
+      "composite_accuracy": 26.0,
+      "avg_latency_ms": 211337.77,
+      "category_macro_f1": 0.597,
+      "priority_macro_f1": 0.3271,
+      "stats": {
+        "latency": {
+          "avg_ms": 211337.77,
+          "median_ms": 208350.87,
+          "min_ms": 5595.73,
+          "max_ms": 428630.31,
+          "variance": 15941893127.64,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "llama3_latest_rep_2": {
+      "model": "llama3:latest",
+      "repetition": 2,
+      "run_id": 17,
+      "status": "completed",
+      "started_at": "2026-11-24T18:50:56.275179",
+      "completed_at": "2026-11-24T18:58:32.856943",
+      "duration_sec": 456.51,
+      "accuracy": 26.0,
+      "category_accuracy": 62.0,
+      "priority_accuracy": 44.0,
+      "composite_accuracy": 26.0,
+      "avg_latency_ms": 236700.2,
+      "category_macro_f1": 0.597,
+      "priority_macro_f1": 0.3271,
+      "stats": {
+        "latency": {
+          "avg_ms": 236700.2,
+          "median_ms": 233348.13,
+          "min_ms": 9690.5,
+          "max_ms": 456360.24,
+          "variance": 18046008289.35,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
+    },
+    "llama3_latest_rep_3": {
+      "model": "llama3:latest",
+      "repetition": 3,
+      "run_id": 18,
+      "status": "completed",
+      "started_at": "2026-11-24T18:58:42.899644",
+      "completed_at": "2026-11-24T19:05:47.106151",
+      "duration_sec": 424.17,
+      "accuracy": 26.0,
+      "category_accuracy": 62.0,
+      "priority_accuracy": 44.0,
+      "composite_accuracy": 26.0,
+      "avg_latency_ms": 213213.1,
+      "category_macro_f1": 0.597,
+      "priority_macro_f1": 0.3271,
+      "stats": {
+        "latency": {
+          "avg_ms": 213213.1,
+          "median_ms": 213613.86,
+          "min_ms": 6383.6,
+          "max_ms": 424132.49,
+          "variance": 16383781624.59,
+          "valid_samples": 50
+        },
+        "reliability": {
+          "total_cases": 50,
+          "successful_inferences": 50,
+          "failed_inferences": 0,
+          "invalid_json_responses": 0,
+          "parsing_failures": 0,
+          "missing_or_invalid_fields": 0
+        }
+      }
     }
   },
   "warmups": {
@@ -212,6 +342,12 @@
       "model": "mistral:latest",
       "timestamp": "2026-11-23T18:01:04.353681",
       "latency_ms": 25778.27,
+      "parsed_successfully": true
+    },
+    "llama3_latest_warmup": {
+      "model": "llama3:latest",
+      "timestamp": "2026-11-24T18:43:37.434943",
+      "latency_ms": 29715.34,
       "parsed_successfully": true
     }
   }

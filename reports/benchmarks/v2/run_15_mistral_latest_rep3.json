@@ -1,0 +1,349 @@
+{
+  "run_id": 15,
+  "timestamp": "2026-11-24T18:36:32.324675",
+  "duration_sec": 642.16,
+  "total_cases": 50,
+  "passed_cases": 12,
+  "failed_cases": 38,
+  "accuracy": 24.0,
+  "category_accuracy": 70.0,
+  "priority_accuracy": 38.0,
+  "composite_accuracy": 24.0,
+  "avg_latency_ms": 349246.47,
+  "category_metrics": {
+    "accuracy": 70.0,
+    "per_class": {
+      "authentication": {
+        "precision": 0.75,
+        "recall": 0.5,
+        "f1": 0.6,
+        "support": 6
+      },
+      "backend": {
+        "precision": 0.4286,
+        "recall": 0.8571,
+        "f1": 0.5714,
+        "support": 7
+      },
+      "bug": {
+        "precision": 1.0,
+        "recall": 0.1429,
+        "f1": 0.25,
+        "support": 7
+      },
+      "database": {
+        "precision": 0.8,
+        "recall": 0.6667,
+        "f1": 0.7273,
+        "support": 6
+      },
+      "documentation": {
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091,
+        "support": 6
+      },
+      "feature-request": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 6
+      },
+      "performance": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.8571,
+        "support": 6
+      },
+      "ui": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "support": 6
+      }
+    },
+    "macro_avg": {
+      "precision": 0.7994,
+      "recall": 0.7083,
+      "f1": 0.6894
+    },
+    "weighted_avg": {
+      "precision": 0.796,
+      "recall": 0.7,
+      "f1": 0.6782
+    },
+    "confusion_matrix": {
+      "authentication": {
+        "authentication": 3,
+        "backend": 3,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "backend": {
+        "authentication": 0,
+        "backend": 6,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "bug": {
+        "authentication": 1,
+        "backend": 3,
+        "bug": 1,
+        "database": 1,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 1
+      },
+      "database": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 4,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 1,
+        "ui": 0
+      },
+      "documentation": {
+        "authentication": 0,
+        "backend": 1,
+        "bug": 0,
+        "database": 0,
+        "documentation": 5,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 0
+      },
+      "feature-request": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 4,
+        "performance": 0,
+        "ui": 2
+      },
+      "performance": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 6,
+        "ui": 0
+      },
+      "ui": {
+        "authentication": 0,
+        "backend": 0,
+        "bug": 0,
+        "database": 0,
+        "documentation": 0,
+        "feature-request": 0,
+        "performance": 0,
+        "ui": 6
+      }
+    }
+  },
+  "priority_metrics": {
+    "accuracy": 38.0,
+    "per_class": {
+      "high": {
+        "precision": 0.3913,
+        "recall": 1.0,
+        "f1": 0.5625,
+        "support": 18
+      },
+      "low": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 12
+      },
+      "medium": {
+        "precision": 0.25,
+        "recall": 0.05,
+        "f1": 0.0833,
+        "support": 20
+      }
+    },
+    "macro_avg": {
+      "precision": 0.2138,
+      "recall": 0.35,
+      "f1": 0.2153
+    },
+    "weighted_avg": {
+      "precision": 0.2409,
+      "recall": 0.38,
+      "f1": 0.2358
+    },
+    "confusion_matrix": {
+      "high": {
+        "high": 18,
+        "low": 0,
+        "medium": 0
+      },
+      "low": {
+        "high": 9,
+        "low": 0,
+        "medium": 3
+      },
+      "medium": {
+        "high": 19,
+        "low": 0,
+        "medium": 1
+      }
+    }
+  },
+  "difficulty_breakdown": {
+    "easy": 14.29,
+    "medium": 35.0,
+    "hard": 22.22
+  },
+  "tag_breakdown": {
+    "accessibility": 0.0,
+    "alembic": 100.0,
+    "analytics": 0.0,
+    "api": 40.0,
+    "api-docs": 0.0,
+    "assets": 0.0,
+    "authentication": 28.57,
+    "automation": 0.0,
+    "backend": 28.57,
+    "backup": 0.0,
+    "bug": 16.67,
+    "buttons": 0.0,
+    "caching": 0.0,
+    "celery": 0.0,
+    "ci": 0.0,
+    "cli": 0.0,
+    "code-snippet": 0.0,
+    "concurrency": 0.0,
+    "configuration": 0.0,
+    "connection-pool": 0.0,
+    "contrast": 0.0,
+    "contributing": 0.0,
+    "cookies": 0.0,
+    "cpu": 0.0,
+    "crash": 0.0,
+    "cron": 0.0,
+    "crypto": 0.0,
+    "css": 50.0,
+    "csv": 0.0,
+    "dark-mode": 0.0,
+    "dashboard": 33.33,
+    "database": 33.33,
+    "datasets": 0.0,
+    "deadlock": 100.0,
+    "deployment": 100.0,
+    "documentation": 16.67,
+    "dropdown": 0.0,
+    "env-vars": 100.0,
+    "error-handling": 0.0,
+    "event-loop": 0.0,
+    "exit-codes": 0.0,
+    "export": 50.0,
+    "feature": 0.0,
+    "feature-request": 0.0,
+    "filtering": 0.0,
+    "filters": 0.0,
+    "foreign-key": 0.0,
+    "forms": 0.0,
+    "frontend": 0.0,
+    "html-report": 0.0,
+    "http-status": 0.0,
+    "indexing": 0.0,
+    "integration": 0.0,
+    "json": 100.0,
+    "jwt": 0.0,
+    "kubernetes": 100.0,
+    "latency": 100.0,
+    "layout": 0.0,
+    "links": 0.0,
+    "locking": 50.0,
+    "login": 0.0,
+    "maintenance": 0.0,
+    "markdown": 0.0,
+    "math": 100.0,
+    "memory": 50.0,
+    "metrics": 100.0,
+    "mfa": 0.0,
+    "middleware": 0.0,
+    "migrations": 100.0,
+    "modal": 100.0,
+    "models": 0.0,
+    "n+1-query": 100.0,
+    "network": 0.0,
+    "notifications": 0.0,
+    "oauth": 100.0,
+    "openapi": 0.0,
+    "optimization": 0.0,
+    "orm": 100.0,
+    "pagination": 0.0,
+    "performance": 50.0,
+    "postgresql": 0.0,
+    "prompt": 0.0,
+    "python": 0.0,
+    "python3.12": 0.0,
+    "readme": 0.0,
+    "redis": 0.0,
+    "regex": 0.0,
+    "regression": 100.0,
+    "rendering": 0.0,
+    "responsive": 100.0,
+    "rest": 0.0,
+    "runner": 0.0,
+    "safari": 0.0,
+    "schema": 50.0,
+    "search": 0.0,
+    "security": 100.0,
+    "serialization": 100.0,
+    "serializer": 0.0,
+    "session": 50.0,
+    "slack": 0.0,
+    "sql": 0.0,
+    "sqlite": 0.0,
+    "sso": 100.0,
+    "streaming": 100.0,
+    "swagger": 0.0,
+    "timeout": 0.0,
+    "tooltip": 0.0,
+    "transactions": 100.0,
+    "tutorial": 0.0,
+    "typo": 0.0,
+    "ui": 14.29,
+    "ux": 0.0,
+    "validation": 0.0,
+    "webauthn": 0.0,
+    "webhook": 0.0,
+    "webhooks": 0.0,
+    "webpack": 0.0,
+    "workers": 0.0
+  },
+  "latency_stats": {
+    "avg_ms": 349246.47,
+    "median_ms": 341996.45,
+    "min_ms": 58920.27,
+    "max_ms": 642109.43,
+    "variance": 31946009956.52,
+    "valid_samples": 50
+  },
+  "reliability_stats": {
+    "total_cases": 50,
+    "successful_inferences": 50,
+    "failed_inferences": 0,
+    "invalid_json_responses": 0,
+    "parsing_failures": 0,
+    "missing_or_invalid_fields": 0
+  }
+}
